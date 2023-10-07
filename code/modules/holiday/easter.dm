@@ -31,7 +31,7 @@
 					new /mob/living/simple_animal/chicken/rabbit(R.loc)
 
 /mob/living/simple_animal/chicken/rabbit
-	name = "rabbit"
+	name = "\improper rabbit"
 	desc = "The hippiest hop around."
 	icon = 'icons/mob/easter.dmi'
 	icon_state = "rabbit_white"
