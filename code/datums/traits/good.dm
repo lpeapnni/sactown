@@ -1580,22 +1580,6 @@ GLOBAL_LIST_INIT(weapons_of_texarkana, list(
 	lose_text = span_danger("After picking some 250 year old cosmoline out from under one of your nails you realize that... Uh, no, the Mosin Nagant is a piece of shit.")
 	locked =  FALSE
 
-/datum/quirk/wandproficient
-	name = "Magically Attuned"
-	desc = "You were either born with a natural inclination for magic or were taught its secrets."
-	value = 0
-	category = "Ranged Quirks"
-	mechanics = "You can use magical wands, staves, and other advanced magical items. However, magic has a cost -- your potential elsewhere is limited, and learning a martial art will sever your connection to magic."
-	conflicts = list(
-	/datum/quirk/deadeye,
-	/datum/quirk/mastermartialartist,
-	)
-
-	mob_trait = TRAIT_WAND_PROFICIENT
-	gain_text = span_notice("You feel magic flowing through your veins!")
-	lose_text = span_danger("The magic within you fades away.")
-	locked = FALSE
-
 /datum/quirk/playdead
 	name = "Play Dead"
 	desc = "You're good at acting!"
