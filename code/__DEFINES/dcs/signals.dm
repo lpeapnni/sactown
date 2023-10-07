@@ -449,7 +449,6 @@
 #define COMSIG_ITEM_UPDATE_RESKIN "reskin_me" // (obj/item/thing_to_skin)
 #define COMSIG_ITEM_GET_COST "get_cost"
 
-
 #define COMSIG_ATOM_GET_VALUE "get_value"						/// returns the value of the atom
 
 /// datum/source, mob/spawner
