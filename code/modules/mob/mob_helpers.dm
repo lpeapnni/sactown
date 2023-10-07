@@ -597,3 +597,12 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 /mob/living/GetJob()
 	if (mind && mind.assigned_role)
 		return SSjob.GetJob(mind.assigned_role)
+
+/mob/proc/recenter_wide_sprite()
+	var/icon/I = icon(icon)
+	var/icon_width = I.Width()
+	if(icon_width>32) //This proc only fixes sprites that are too wide.
+		var/matrix/M = matrix() //Use a fresh matrix so we start at 0,0
+		transform = M.Translate(-((icon_width-32)/2),0) //Adjust pixel offset left by half of their icon's width past 32
+		return TRUE
+	return FALSE

@@ -202,6 +202,9 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 	var/obj/effect/proc_holder/mob_common/make_nest/make_a_nest
 	var/obj/effect/proc_holder/mob_common/unmake_nest/unmake_a_nest
 
+	var/ignore_other_mobs = TRUE // If TRUE, the mob will fight other mobs, if FALSE, it will only fight players
+	var/override_ignore_other_mobs = FALSE // If TRUE, it'll ignore the idnore other mobs flag, for mobs that are supposed to be hostile to everything
+
 /mob/living/simple_animal/Initialize()
 	. = ..()
 	GLOB.simple_animals[AIStatus] += src
@@ -341,7 +344,7 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 /mob/living/simple_animal/proc/infight_check(mob/living/simple_animal/H)
 	if(SSmobs.debug_disable_mob_ceasefire)
 		return
-	if(H.client || client || player_character || H.player_character)
+	if(H.client || client)
 		return
 	if(override_ignore_other_mobs || H.override_ignore_other_mobs)
 		return
@@ -829,7 +832,7 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 		return
 	if(!dextrous)
 		return
-	if(!hand_index)
+	if(!hand_index && held_items.len)//Divide by zero prevention
 		hand_index = (active_hand_index % held_items.len)+1
 	var/oindex = active_hand_index
 	active_hand_index = hand_index

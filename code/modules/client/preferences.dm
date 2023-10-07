@@ -220,6 +220,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/custom_species = null
 
 	//Quirk list
+	var/list/char_quirks = list()
+	//legacy quirks or some shit IDFK
 	var/list/all_quirks = list()
 
 	//Quirk category currently selected

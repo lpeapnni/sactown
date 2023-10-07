@@ -123,7 +123,6 @@ SUBSYSTEM_DEF(traumas)
 		"dogs" = typecacheof(list(
 			/mob/living/simple_animal/pet/dog,
 			/mob/living/simple_animal/hostile/stickman/dog,
-			/mob/living/simple_animal/pet/wolf,
 			/mob/living/simple_animal/hostile/wolf)
 			),
 

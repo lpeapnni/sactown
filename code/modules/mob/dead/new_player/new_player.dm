@@ -252,8 +252,6 @@
 			alert(src, "This character name is already in use. Choose another.")
 			return */
 
-		PreLateChoices()
-
 	if(href_list["manifest"])
 		ViewManifest()
 
