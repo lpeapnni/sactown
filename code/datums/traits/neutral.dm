@@ -490,30 +490,6 @@
 	if(!QDELETED(H))
 		H.remove_language(/datum/language/pokemon)
 
-/datum/quirk/in_heat
-	name = "ERP Receptive"
-	desc = "Your character, for whatever reason, is PASSIVELY seeking out attention from those who match your OOC Prefences. Remember to set your OOC notes!"
-	value = 0
-	category = "Bawdy Quirks"
-	mechanics = "This trait is a flag for people who have ERP seeking to know that you, right now, are seeking ERP. It's a simple concept, if you just have this quirk you are not going out of our way to look for it, but if it stumbles into your lap well that'd be fine, right?"
-	conflicts = list()
-	mob_trait = TRAIT_IN_HEAT
-
-/datum/quirk/shy
-	name = "OOCly Shy"
-	desc = "You, and likely your character, are a bit shy. This is a fine thing to be, but letting people know this way will let them know you do want to be included in social situations when its feasible. Basically just top bait though, lets be real."
-	value = 0
-	category = "OOC Quirks"
-	mechanics = "The description should be fairly clear, but to reiterate this quirk exists as an OOC flag to let everyone know that you have some sort of social issue that makes it hard for you to approach others. If anyone dares to give you shit about taking this please alert staff immediatly, we will eat their legs off."
-	conflicts = list()
-	mob_trait = TRAIT_SHY
-
-/datum/quirk/heat
-	name = "ERP Seeking"
-	desc = "Your character, for whatever reason, is ACTIVELY seeking out attention from those who match your OOC Preferences. Remember to check peoples OOC notes!"
-	value = 0
-	mob_trait = TRAIT_HEAT_DETECT
-
 /datum/quirk/smol
 	name = "Smol!"
 	desc = "Maybe you're really smol, maybe you're just really light, maybe you're *really* into yoga. However it is, carrying you around is just pretty dang easy."

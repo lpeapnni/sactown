@@ -485,33 +485,6 @@
 	if (!isnull(trait_exam))
 		. += trait_exam
 
-	if(HAS_TRAIT(src, TRAIT_IN_HEAT) && (HAS_TRAIT(user, TRAIT_HEAT_DETECT) || src == user))
-		. += ""
-		. += "<span class='love'>[t_He] [t_is] looking for a good time, you should check their OOC Notes.</span>"
-
-
-	if(HAS_TRAIT(src, TRAIT_SHY))
-		. += ""
-		. += "<span class='love'>[t_He] [t_is] is a bit shy (OOCly & probably ICly too), but is trying to make people know they want to be engaged with. Be a darling and maybe interact with them some if you have time?</span>"
-
-	if(HAS_TRAIT(src, TRAIT_OOCAPP))
-		. += ""
-		. += "<span class='unconcious'>☎️ - L/OOC Approach Preffered</span>"
-
-	if(HAS_TRAIT(src, TRAIT_PVEFOC))
-		. += ""
-		. += "<span class='unconcious'>✌️ - This player prefers PVE Scenarios.</span>"
-
-	if(HAS_TRAIT(src, TRAIT_PVPFOC))
-		. += ""
-		. += "<span class='unconcious'>🔥 - This player prefers PVP Scenarios.</span>"
-
-	if(HAS_TRAIT(src, TRAIT_COMBATSWITCH))
-		. += ""
-		. += "<span class='unconcious'>🌎 - This player is happy to do PVP or PVE gameplay.</span>"
-
-
-
 	if(HAS_TRAIT(src, TRAIT_SMOL))
 		. += ""
 		. += span_notice("[t_He] looks easy to scoop up.</span>")
