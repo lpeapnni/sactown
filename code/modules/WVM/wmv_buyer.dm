@@ -218,10 +218,6 @@ GLOBAL_LIST_EMPTY(wasteland_vendor_shop_list)
 		/obj/item/card/midbounty = 150,
 		/obj/item/card/highbounty = 250,
 		/obj/item/card/kingbounty = 500,
-		// Artifacts: Someone who actually playes needs to test these prices -Kelprunner
-		/obj/item/artifact/common = 150,
-		/obj/item/artifact/uncommon = 300,
-		/obj/item/artifact/rare = 500,
 	)
 	var/list/quicklisted = list()
 	var/is_grinding = FALSE

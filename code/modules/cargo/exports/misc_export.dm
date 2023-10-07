@@ -740,23 +740,5 @@
 	export_types = list(/obj/structure/closet/crate, /obj/structure/closet/crate/footlocker)
 	exclude_types = list(/obj/structure/closet/crate/large, /obj/structure/closet/crate/wooden, /obj/structure/closet/crate/bin)
 
-/datum/export/item/lowartifact
-	cost = 5000
-	unit_name = "common artifact"
-	export_types = list(/obj/item/artifact/common,
-	)
-
-/datum/export/item/highartifact
-	cost = 15000
-	unit_name = "rare artifact"
-	export_types = list(/obj/item/artifact/rare,
-	)
-
-/datum/export/item/midartifact
-	cost = 10000
-	unit_name = "uncommon artifact"
-	export_types = list(/obj/item/artifact/uncommon,
-	)
-
 /* k_elasticity 0 - the price degredation thing, in case we need it. Might need to be applied to toys in the future. */
 
