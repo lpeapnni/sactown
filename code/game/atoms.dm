@@ -379,31 +379,24 @@
 	return FALSE
 
 /atom/proc/get_examine_name(mob/user)
-	var/list/ex_name[EXAMINE_LIST_LEN]
-	ex_name[EXAMINE_POSITION_ARTICLE] = null
-	ex_name[EXAMINE_POSITION_GRODY] = null
-	ex_name[EXAMINE_POSITION_PREFIX] = null
-	ex_name[EXAMINE_POSITION_NAME] = "[src]"
-	ex_name[EXAMINE_POSITION_SUFFIX] = null
-
-	var/sigret = SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, ex_name)
-	if(CHECK_BITFIELD(sigret, COMPONENT_EXNAME_CHANGED))
-		if(blood_DNA && !istype(src, /obj/effect/decal))
-			ex_name[EXAMINE_POSITION_GRODY] = "blood-stained"
-		listclearnulls(ex_name)
-		var/outname = ex_name.Join(" ")
-		if(isnull(ex_name[EXAMINE_POSITION_ARTICLE]))
-			outname = "\a [outname]"
-		return outname
-
-	var/grode = ""
-	if(blood_DNA && !istype(src, /obj/effect/decal))
-		grode = "blood-stained "
-
+	. = "\a [src]"
+	var/list/override = list(gender == PLURAL ? "some" : "a", " ", "[name]")
 	if(article)
-		return "[article] [grode][src]"
-	else
-		return "\a [src]"
+		. = "[article] [src]"
+		override[EXAMINE_POSITION_ARTICLE] = article
+
+	var/should_override = FALSE
+
+	if(SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, override) & COMPONENT_EXNAME_CHANGED)
+		should_override = TRUE
+
+
+	if(blood_DNA && !istype(src, /obj/effect/decal))
+		override[EXAMINE_POSITION_BEFORE] = " blood-stained "
+		should_override = TRUE
+
+	if(should_override)
+		. = override.Join("")
 
 ///Generate the full examine string of this atom (including icon for goonchat)
 /atom/proc/get_examine_string(mob/user, thats = FALSE)

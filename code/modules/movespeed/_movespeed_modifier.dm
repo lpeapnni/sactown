@@ -56,10 +56,8 @@ Key procs
 
 
 
-/datum/movespeed_modifier/New(my_id)
+/datum/movespeed_modifier/New()
 	. = ..()
-	if(!isnull(my_id))
-		id = my_id
 	if(!id)
 		id = "[type]" //We turn the path into a string.
 
@@ -90,12 +88,12 @@ GLOBAL_LIST_EMPTY(movespeed_modification_cache)
 	return M
 
 ///Add a move speed modifier to a mob. If a variable subtype is passed in as the first argument, it will make a new datum. If ID conflicts, it will overwrite the old ID.
-/mob/proc/add_movespeed_modifier(datum/movespeed_modifier/type_or_datum, update = TRUE, cool_id)
+/mob/proc/add_movespeed_modifier(datum/movespeed_modifier/type_or_datum, update = TRUE)
 	if(ispath(type_or_datum))
 		if(!initial(type_or_datum.variable))
 			type_or_datum = get_cached_movespeed_modifier(type_or_datum)
 		else
-			type_or_datum = new type_or_datum(cool_id)
+			type_or_datum = new type_or_datum
 	var/datum/movespeed_modifier/existing = LAZYACCESS(movespeed_modification, type_or_datum.id)
 	if(existing)
 		if(existing == type_or_datum)		//same thing don't need to touch
