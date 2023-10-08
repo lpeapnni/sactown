@@ -984,22 +984,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 		playsound(src, 'sound/items/change_jaws.ogg', 60, 1)
 		to_chat(usr, "You put [inserted_value] coins value to a vending machine.")
 		src.ui_interact(usr)
-	else if(istype(I, /obj/item/stack/f13Cash/denarius))
-		var/obj/item/stack/f13Cash/denarius/currency = I
-		var/inserted_value = FLOOR(currency.amount * 10, 1)
-		stored_caps += inserted_value
-		I.use(currency.amount)
-		playsound(src, 'sound/items/change_jaws.ogg', 60, 1)
-		to_chat(usr, "You put [inserted_value] coins value to a vending machine.")
-		src.ui_interact(usr)
-	else if(istype(I, /obj/item/stack/f13Cash/aureus))
-		var/obj/item/stack/f13Cash/aureus/currency = I
-		var/inserted_value = FLOOR(currency.amount * 100, 1)
-		stored_caps += inserted_value
-		I.use(currency.amount)
-		playsound(src, 'sound/items/change_jaws.ogg', 60, 1)
-		to_chat(usr, "You put [inserted_value] coins value to a vending machine.")
-		src.ui_interact(usr)
 	else
 		to_chat(usr, "Invalid currency!")
 		return
