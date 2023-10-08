@@ -188,12 +188,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		return
 	for(var/clog in missing_updates)
 		switch(clog)
-			if(PMC_OOC_NOTES_UPDATE) // ooc notes now come with a cool template
-				var/ooc_notes
-				S["feature_ooc_notes"] >> ooc_notes
-				ooc_notes += OOC_NOTE_TEMPLATE
-				WRITE_FILE(S["feature_ooc_notes"], ooc_notes)
-				current_version |= PMC_OOC_NOTES_UPDATE
 			if(PMC_DAN_MESSED_UP_WHO_STUFF)
 				whoflags = DEFAULT_WHO_FLAGS
 				WRITE_FILE(S["whoflags"], whoflags)
@@ -208,7 +202,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(!ckey)
 		return
 	path = "data/player_saves/[ckey[1]]/[ckey]/[filename]"
-	vr_path = "data/player_saves/[ckey[1]]/[ckey]/vore"
 	// TODO: Make bellies save/load to/from a human readable format
 	// Shouldnt be too hard to convert the current savefile format to json or txt or something
 	// Hopefully everyone's bellies dont get fucked when I do that!
@@ -544,15 +537,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		"has_breasts" = FALSE,
 		"breasts_color" = "ffffff",
 
-		"has_butt" = FALSE,
-		"butt_color" = "ffffff",
-		"butt_size" = BUTT_SIZE_DEF,
-
-		"has_belly" = FALSE,
-		"belly_color" = "ffffff",
-		"belly_size" = BELLY_SIZE_DEF,
-		"belly_shape" = DEF_BELLY_SHAPE,
-
 		"breasts_size" = BREASTS_SIZE_DEF,
 		"breasts_shape" = DEF_BREASTS_SHAPE,
 		"breasts_producing" = FALSE,
@@ -573,8 +557,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		"breasts_visibility_flags"= GEN_VIS_FLAG_DEFAULT,
 		"cock_visibility_flags" = GEN_VIS_FLAG_DEFAULT,
 		"vag_visibility_flags" = GEN_VIS_FLAG_DEFAULT,
-		"butt_visibility_flags" = GEN_VIS_FLAG_DEFAULT,
-		"belly_visibility_flags" = GEN_VIS_FLAG_DEFAULT,
 		"genital_visibility_flags" = GEN_VIS_OVERALL_FLAG_DEFAULT,
 		"genital_order" = DEF_COCKSTRING,
 		"genital_hide" = NONE,
@@ -585,7 +567,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		"flavor_text" = "",
 		"silicon_flavor_text" = "",
 
-		"ooc_notes" = OOC_NOTE_TEMPLATE,
+		"ooc_notes" = "",
 		"meat_type" = "Mammalian",
 		"taste" = "something salty",
 		"body_model" = MALE,
@@ -634,8 +616,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["name_is_always_random"]	>> be_random_name
 	S["body_is_always_random"]	>> be_random_body
 	S["gender"]					>> gender
-	S["tbs"]					>> tbs
-	S["kisser"]					>> kisser
 	S["body_model"]				>> features["body_model"]
 	S["body_size"]				>> features["body_size"]
 	S["body_width"]				>> features["body_width"]
@@ -763,19 +743,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["feature_breasts_producing"]		>> features["breasts_producing"]
 	S["feature_breasts_visibility"]		>> features["breasts_visibility"]
 	S["feature_breasts_visibility_flags"] >> features["breasts_visibility_flags"]
-	//butt features
-	S["feature_has_butt"] 				>> features["has_butt"]
-	S["feature_butt_color"] 			>> features["butt_color"]
-	S["feature_butt_size"] 				>> features["butt_size"]
-	S["feature_butt_visibility"] 		>> features["butt_visibility"]
-	S["feature_butt_visibility_flags"] 		>> features["butt_visibility_flags"]
-	//belly features
-	S["feature_has_belly"] 				>> features["has_belly"]
-	S["feature_belly_color"] 			>> features["belly_color"]
-	S["feature_belly_shape"] 			>> features["belly_shape"]
-	S["feature_belly_size"] 			>> features["belly_size"]
-	S["feature_belly_visibility"] 		>> features["belly_visibility"]
-	S["feature_belly_visibility_flags"] >> features["belly_visibility_flags"]
 	//vagina features
 	S["feature_has_vag"]				>> features["has_vag"]
 	S["feature_vag_shape"]				>> features["vag_shape"]
@@ -843,24 +810,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	S["whoflags"]	>> whoflags // WHo!
 
-	/// Vore stuff!
-	S["master_vore_toggle"]					>> master_vore_toggle
-	S["vore_smell"]							>> vore_smell
-	S["allow_dogborgs"]						>> allow_dogborgs
-	S["allow_eating_sounds"]				>> allow_eating_sounds
-	S["allow_digestion_sounds"]				>> allow_digestion_sounds
-	S["allow_digestion_damage"]				>> allow_digestion_damage
-	S["allow_digestion_death"]				>> allow_digestion_death
-	S["allow_absorbtion"]					>> allow_absorbtion
-	S["allow_healbelly_healing"]			>> allow_healbelly_healing
-	S["allow_vore_messages"]				>> allow_vore_messages
-	S["allow_death_messages"]				>> allow_death_messages
-	S["allow_being_prey"]					>> allow_being_prey
-	S["allow_being_fed_to_others"]			>> allow_being_fed_to_others
-	S["allow_being_prey"]					>> allow_being_prey
-	S["allow_seeing_belly_descriptions"]	>> allow_seeing_belly_descriptions
-	S["allow_being_sniffed"]				>> allow_being_sniffed
-	belly_prefs = safe_json_decode(S["belly_prefs"])
 	current_version = safe_json_decode(S["current_version"])
 
 	//try to fix any outdated data if necessary
@@ -970,18 +919,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	var/static/max_D
 	if(!max_D)
 		max_D = CONFIG_GET(number/penis_max_inches_prefs)
-	var/static/min_B
-	if(!min_B)
-		min_B = CONFIG_GET(number/butt_min_size_prefs)
-	var/static/max_B
-	if(!max_B)
-		max_B = CONFIG_GET(number/butt_max_size_prefs)
-	var/static/min_O
-	if(!min_O)
-		min_O = CONFIG_GET(number/belly_min_size_prefs)
-	var/static/max_O
-	if(!max_O)
-		max_O = CONFIG_GET(number/belly_max_size_prefs)
+
 	var/static/safe_visibilities
 	if(!safe_visibilities)
 		var/list/L = CONFIG_GET(keyed_list/safe_visibility_toggles)
@@ -989,27 +927,18 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	features["breasts_size"]		= sanitize_inlist(features["breasts_size"], B_sizes, BREASTS_SIZE_DEF)
 	features["cock_size"]			= sanitize_integer(features["cock_size"], min_D, max_D, COCK_SIZE_DEF)
-	features["butt_size"] 			= sanitize_integer(features["butt_size"], min_B, max_B, BUTT_SIZE_DEF)
-	features["belly_size"] 			= sanitize_integer(features["belly_size"], min_O, max_O, BELLY_SIZE_DEF)
 	features["breasts_shape"]		= sanitize_inlist(features["breasts_shape"], GLOB.breasts_shapes_list, DEF_BREASTS_SHAPE)
-	features["belly_shape"]			= sanitize_inlist(features["belly_shape"], GLOB.belly_shapes_list, DEF_BELLY_SHAPE)
 	features["cock_shape"]			= sanitize_inlist(features["cock_shape"], GLOB.cock_shapes_list, DEF_COCK_SHAPE)
 	features["balls_shape"]			= sanitize_inlist(features["balls_shape"], GLOB.balls_shapes_list, DEF_BALLS_SHAPE)
 	features["vag_shape"]			= sanitize_inlist(features["vag_shape"], GLOB.vagina_shapes_list, DEF_VAGINA_SHAPE)
-	features["butt_color"]			= sanitize_hexcolor(features["butt_color"], 6, FALSE, "FFFFFF")
-	features["belly_color"]			= sanitize_hexcolor(features["belly_color"], 6, FALSE, "FFFFFF")
 	features["breasts_color"]		= sanitize_hexcolor(features["breasts_color"], 6, FALSE, "FFFFFF")
 	features["cock_color"]			= sanitize_hexcolor(features["cock_color"], 6, FALSE, "FFFFFF")
 	features["balls_color"]			= sanitize_hexcolor(features["balls_color"], 6, FALSE, "FFFFFF")
 	features["vag_color"]			= sanitize_hexcolor(features["vag_color"], 6, FALSE, "FFFFFF")
-	features["butt_visibility"] 	= sanitize_inlist(features["butt_visibility"], safe_visibilities, GEN_VISIBLE_NO_UNDIES)
-	features["belly_visibility"]	= sanitize_inlist(features["breasts_visibility"], safe_visibilities, GEN_VISIBLE_NO_UNDIES)
 	features["breasts_visibility"]	= sanitize_inlist(features["breasts_visibility"], safe_visibilities, GEN_VISIBLE_NO_UNDIES)
 	features["cock_visibility"]		= sanitize_inlist(features["cock_visibility"], safe_visibilities, GEN_VISIBLE_NO_UNDIES)
 	features["balls_visibility"]	= sanitize_inlist(features["balls_visibility"], safe_visibilities, GEN_VISIBLE_NO_UNDIES)
 	features["vag_visibility"]		= sanitize_inlist(features["vag_visibility"], safe_visibilities, GEN_VISIBLE_NO_UNDIES)
-	features["butt_visibility_flags"] 		= sanitize_integer(features["butt_visibility_flags"], GENITAL_FLAGS_MIN, GENITAL_FLAGS_MAX, GEN_VIS_FLAG_DEFAULT)
-	features["belly_visibility_flags"]		= sanitize_integer(features["breasts_visibility_flags"], GENITAL_FLAGS_MIN, GENITAL_FLAGS_MAX, GEN_VIS_FLAG_DEFAULT)
 	features["breasts_visibility_flags"]	= sanitize_integer(features["breasts_visibility_flags"], GENITAL_FLAGS_MIN, GENITAL_FLAGS_MAX, GEN_VIS_FLAG_DEFAULT)
 	features["cock_visibility_flags"]		= sanitize_integer(features["cock_visibility_flags"], GENITAL_FLAGS_MIN, GENITAL_FLAGS_MAX, GEN_VIS_FLAG_DEFAULT)
 	features["balls_visibility_flags"]		= sanitize_integer(features["balls_visibility_flags"], GENITAL_FLAGS_MIN, GENITAL_FLAGS_MAX, GEN_VIS_FLAG_DEFAULT)
@@ -1028,27 +957,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["flavor_text"]			= copytext(features["flavor_text"], 1, MAX_FLAVOR_LEN)
 	features["silicon_flavor_text"]	= copytext(features["silicon_flavor_text"], 1, MAX_FLAVOR_LEN)
 	features["ooc_notes"]			= copytext(features["ooc_notes"], 1, MAX_FLAVOR_LEN)
-	if(features["ooc_notes"] == "")
-		features["ooc_notes"] = OOC_NOTE_TEMPLATE
-		WRITE_FILE(S["feature_ooc_notes"], features["ooc_notes"])
-
-	/// VORE SANITIZATION - tab 4 or suffer
-	vore_smell						= sanitize_integer(vore_smell, 						FALSE, TRUE, initial(vore_smell))
-	master_vore_toggle				= sanitize_integer(master_vore_toggle, 				FALSE, TRUE, initial(master_vore_toggle))
-	allow_dogborgs					= sanitize_integer(allow_dogborgs, 					FALSE, TRUE, initial(allow_dogborgs))
-	allow_eating_sounds				= sanitize_integer(allow_eating_sounds, 			FALSE, TRUE, initial(allow_eating_sounds))
-	allow_digestion_sounds			= sanitize_integer(allow_digestion_sounds, 			FALSE, TRUE, initial(allow_digestion_sounds))
-	allow_digestion_damage			= sanitize_integer(allow_digestion_damage, 			FALSE, TRUE, initial(allow_digestion_damage))
-	allow_digestion_death			= sanitize_integer(allow_digestion_death, 			FALSE, TRUE, initial(allow_digestion_death))
-	allow_absorbtion				= sanitize_integer(allow_absorbtion, 				FALSE, TRUE, initial(allow_absorbtion))
-	allow_healbelly_healing			= sanitize_integer(allow_healbelly_healing, 		FALSE, TRUE, initial(allow_healbelly_healing))
-	allow_vore_messages				= sanitize_integer(allow_vore_messages, 			FALSE, TRUE, initial(allow_vore_messages))
-	allow_death_messages			= sanitize_integer(allow_death_messages,			FALSE, TRUE, initial(allow_death_messages))
-	allow_being_prey				= sanitize_integer(allow_being_prey, 				FALSE, TRUE, initial(allow_being_prey))
-	allow_being_fed_to_others		= sanitize_integer(allow_being_fed_to_others, 		FALSE, TRUE, initial(allow_being_fed_to_others))
-	allow_being_prey				= sanitize_integer(allow_being_prey, 				FALSE, TRUE, initial(allow_being_prey))
-	allow_seeing_belly_descriptions	= sanitize_integer(allow_seeing_belly_descriptions, FALSE, TRUE, initial(allow_seeing_belly_descriptions))
-	allow_being_sniffed				= sanitize_integer(allow_being_sniffed, 			FALSE, TRUE, initial(allow_being_sniffed))
 
 	//load every advanced coloring mode thing in one go
 	//THIS MUST BE DONE AFTER ALL FEATURE SAVES OR IT WILL NOT WORK
@@ -1158,8 +1066,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["name_is_always_random"]	, be_random_name)
 	WRITE_FILE(S["body_is_always_random"]	, be_random_body)
 	WRITE_FILE(S["gender"]					, gender)
-	WRITE_FILE(S["tbs"]						, tbs)
-	WRITE_FILE(S["kisser"]					, kisser)
 	WRITE_FILE(S["body_model"]				, features["body_model"])
 	WRITE_FILE(S["body_size"]				, features["body_size"])
 	WRITE_FILE(S["body_width"]				, features["body_width"])
@@ -1230,18 +1136,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_breasts_visibility"], features["breasts_visibility"])
 	WRITE_FILE(S["feature_breasts_visibility_flags"], features["breasts_visibility_flags"])
 
-	WRITE_FILE(S["feature_has_butt"], features["has_butt"])
-	WRITE_FILE(S["feature_butt_color"], features["butt_color"])
-	WRITE_FILE(S["feature_butt_size"], features["butt_size"])
-	WRITE_FILE(S["feature_butt_visibility"], features["butt_visibility"])
-	WRITE_FILE(S["feature_butt_visibility_flags"], features["butt_visibility_flags"])
-
-	WRITE_FILE(S["feature_has_belly"], features["has_belly"])
-	WRITE_FILE(S["feature_belly_color"], features["belly_color"])
-	WRITE_FILE(S["feature_belly_size"], features["belly_size"])
-	WRITE_FILE(S["feature_belly_shape"], features["belly_shape"])
-	WRITE_FILE(S["feature_belly_visibility"], features["belly_visibility"])
-	WRITE_FILE(S["feature_belly_visibility_flags"], features["belly_visibility_flags"])
 	WRITE_FILE(S["feature_genital_order"], features["genital_order"])
 	WRITE_FILE(S["feature_genital_hide"], features["genital_hide"])
 	WRITE_FILE(S["feature_genital_visibility_flags"], features["genital_visibility_flags"])
@@ -1348,24 +1242,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["typing_indicator_sound"]				, features_speech["typing_indicator_sound"])
 	WRITE_FILE(S["typing_indicator_sound_play"]			, features_speech["typing_indicator_sound_play"])
 
-	/// Save the vore!
-	WRITE_FILE(S["vore_smell"]						, vore_smell)
-	WRITE_FILE(S["master_vore_toggle"]				, master_vore_toggle)
-	WRITE_FILE(S["allow_dogborgs"]					, allow_dogborgs)
-	WRITE_FILE(S["allow_eating_sounds"]				, allow_eating_sounds)
-	WRITE_FILE(S["allow_digestion_sounds"]			, allow_digestion_sounds)
-	WRITE_FILE(S["allow_digestion_damage"]			, allow_digestion_damage)
-	WRITE_FILE(S["allow_digestion_death"]			, allow_digestion_death)
-	WRITE_FILE(S["allow_absorbtion"]				, allow_absorbtion)
-	WRITE_FILE(S["allow_healbelly_healing"]			, allow_healbelly_healing)
-	WRITE_FILE(S["allow_vore_messages"]				, allow_vore_messages)
-	WRITE_FILE(S["allow_death_messages"]			, allow_death_messages)
-	WRITE_FILE(S["allow_being_prey"]				, allow_being_prey)
-	WRITE_FILE(S["allow_being_fed_to_others"]		, allow_being_fed_to_others)
-	WRITE_FILE(S["allow_being_prey"]				, allow_being_prey)
-	WRITE_FILE(S["allow_seeing_belly_descriptions"]	, allow_seeing_belly_descriptions)
-	WRITE_FILE(S["allow_being_sniffed"]				, allow_being_sniffed)
-	WRITE_FILE(S["belly_prefs"]						, safe_json_encode(belly_prefs))
 	WRITE_FILE(S["current_version"]					, safe_json_encode(current_version))
 
 	WRITE_FILE(S["underwear_overhands"]				, underwear_overhands) // not vore, dont worry its not eating anyones hands

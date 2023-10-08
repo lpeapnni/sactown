@@ -302,7 +302,6 @@
 					// 	use_reverb = FALSE,
 					// 	distant_sound = null,
 					// 	distant_range = null,
-					// 	soundpref_index = null,
 					// )
 					work_animation()
 			else

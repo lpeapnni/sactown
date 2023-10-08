@@ -41,9 +41,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 										//If it's 0, that's good, if it's anything but 0, the owner of this prefs file's antag choices were,
 										//autocorrected this round, not that you'd need to check that.
 
-	// VORE~
-	// see: [code\modules\vore\eating\vore_prefs.dm]
-
 	var/UI_style = null
 	var/buttons_locked = FALSE
 	var/hotkeys = FALSE
@@ -110,8 +107,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/right_eye_color = "000000"
 	var/eye_type = DEFAULT_EYES_TYPE	//Eye type
 	var/split_eye_colors = FALSE
-	var/tbs = TBS_DEFAULT // turner broadcasting system
-	var/kisser = KISS_DEFAULT // Kiss this (  Y  )
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
 	var/list/features = list(
 		"mcolor" = "FFFFFF",
@@ -163,13 +158,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		"breasts_size" = BREASTS_SIZE_DEF,
 		"breasts_shape" = DEF_BREASTS_SHAPE,
 		"breasts_producing" = FALSE,
-		"has_butt" = FALSE,
-		"butt_color" = "ffffff",
-		"butt_size" = BUTT_SIZE_DEF,
-		"has_belly" = FALSE,
-		"belly_color" = "ffffff",
-		"belly_size" = BELLY_SIZE_DEF,
-		"belly_shape" = DEF_BELLY_SHAPE,
 		"has_vag" = FALSE,
 		"vag_shape" = DEF_VAGINA_SHAPE,
 		"vag_color" = "ffffff",
@@ -178,14 +166,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		"breasts_visibility"= GEN_VISIBLE_NO_UNDIES,
 		"cock_visibility" = GEN_VISIBLE_NO_UNDIES,
 		"vag_visibility" = GEN_VISIBLE_NO_UNDIES,
-		"butt_visibility" = GEN_VISIBLE_NO_UNDIES,
-		"belly_visibility" = GEN_VISIBLE_NO_UNDIES,
 		"balls_visibility_flags" = GEN_VIS_FLAG_DEFAULT,
 		"breasts_visibility_flags"= GEN_VIS_FLAG_DEFAULT,
 		"cock_visibility_flags" = GEN_VIS_FLAG_DEFAULT,
 		"vag_visibility_flags" = GEN_VIS_FLAG_DEFAULT,
-		"butt_visibility_flags" = GEN_VIS_FLAG_DEFAULT,
-		"belly_visibility_flags" = GEN_VIS_FLAG_DEFAULT,
 		"genital_visibility_flags" = GEN_VIS_OVERALL_FLAG_DEFAULT,
 		"genital_order" = DEF_COCKSTRING,
 		"genital_hide" = NONE,
@@ -435,8 +419,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender;task=input'>[gender == MALE ? "Male" : (gender == FEMALE ? "Female" : (gender == PLURAL ? "Non-binary" : "Object"))]</a><BR>"
 			dat += "<b>Age:</b> <a style='display:block;width:30px' href='?_src_=prefs;preference=age;task=input'>[age]</a><BR>"
-			dat += "<b>Top/Bottom/Switch:</b> <a href='?_src_=prefs;preference=tbs;task=input'>[tbs]</a><BR>"
-			dat += "<b>Orientation:</b> <a href='?_src_=prefs;preference=kisser;task=input'>[kisser]</a><BR>"
 			dat += "</td>"
 			//Middle Column
 			dat +="<td width='30%' valign='top'>"
@@ -676,11 +658,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<h2>Sound Indicator Preferences</h2>"
 			dat += "<b>Sound Ind. Enable:</b><BR>"
 			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_sound_play;task=input'>[features_speech["typing_indicator_sound_play"]]</a><BR>"
+			dat += "<b>Speech Sound:</b><BR>"
 			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_sound;task=input'>[features_speech["typing_indicator_sound"]]</a><BR>"
+			dat += "<b>Speech Speed:</b><BR>"
 			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_speed;task=input'>[features_speech["typing_indicator_speed"]]</a><BR>"
+			dat += "<b>Speech Pitch:</b><BR>"
 			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_pitch;task=input'>[features_speech["typing_indicator_pitch"]]</a><BR>"
+			dat += "<b>Speech Variance:</b><BR>"
 			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_variance;task=input'>[features_speech["typing_indicator_variance"]]</a><BR>"
+			dat += "<b>Speech Volume:</b><BR>"
 			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_volume;task=input'>[features_speech["typing_indicator_volume"]]</a><BR>"
+			dat += "<b>Speech Max Length:</b><BR>"
 			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_max_words_spoken;task=input'>[features_speech["typing_indicator_max_words_spoken"]]</a><BR>"
 			//dat += "<BR><a href='?_src_=prefs;preference=soundindicatorpreview'>Preview Sound Indicator</a><BR>"
 
@@ -863,84 +851,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "</td>"
 
 			dat += "</tr></table>"
-			/*Uplink choice disabled since not implemented, pointless button
-			dat += "<b>Uplink Location:</b><a style='display:block;width:100px' href ='?_src_=prefs;preference=uplink_loc;task=input'>[uplink_spawn_loc]</a>"
-			dat += "</td>"*/
-
-			/// HA HA! I HAVE DELETED YOUR PRECIOUS NAUGHTY PARTS, YOU HORNY ANIMALS! 
-			/* dat +="<td width='220px' height='300px' valign='top'>" //
-			if(NOGENITALS in pref_species.species_traits)
-				dat += "<b>Your species ([pref_species.name]) does not support genitals!</b><br>"
-			else
-				dat += "<h3>Penis</h3>"
-				dat += "<a style='display:block;width:50px' href='?_src_=prefs;preference=has_cock'>[features["has_cock"] == TRUE ? "Yes" : "No"]</a>"
-				if(features["has_cock"])
-					if(!pref_species.use_skintones)
-						dat += "<b>Penis Color:</b></a><BR>"
-						dat += "<span style='border: 1px solid #161616; background-color: #[features["cock_color"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=cock_color;task=input'>Change</a><br>"
-					var/tauric_shape = FALSE
-					if(features["cock_taur"])
-						var/datum/sprite_accessory/penis/P = GLOB.cock_shapes_list[features["cock_shape"]]
-						if(P.taur_icon && parent.can_have_part("taur"))
-							var/datum/sprite_accessory/taur/T = GLOB.taur_list[features["taur"]]
-							if(T.taur_mode & P.accepted_taurs)
-								tauric_shape = TRUE
-					dat += "<b>Penis Shape:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_shape;task=input'>[features["cock_shape"]][tauric_shape ? " (Taur)" : ""]</a>"
-					dat += "<b>Penis Length:</b> <a style='display:block;width:120px' href='?_src_=prefs;preference=cock_length;task=input'>[features["cock_length"]] inch(es)</a>"
-					dat += "<b>Penis Visibility:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=cock_visibility;task=input'>[features["cock_visibility"]]</a>"
-					dat += "<b>Has Testicles:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=has_balls'>[features["has_balls"] == TRUE ? "Yes" : "No"]</a>"
-					if(features["has_balls"])
-						if(!pref_species.use_skintones)
-							dat += "<b>Testicles Type:</b> <a style='display:block;width:100px' href='?_src_=prefs;preference=balls_shape;task=input'>[features["balls_shape"]]</a>"
-							dat += "<b>Testicles Color:</b></a><BR>"
-							dat += "<span style='border: 1px solid #161616; background-color: #[features["balls_color"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=balls_color;task=input'>Change</a><br>"
-						dat += "<b>Testicles Visibility:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=balls_visibility;task=input'>[features["balls_visibility"]]</a>"
-				dat += APPEARANCE_CATEGORY_COLUMN
-				dat += "<h3>Vagina</h3>"
-				dat += "<a style='display:block;width:50px' href='?_src_=prefs;preference=has_vag'>[features["has_vag"] == TRUE ? "Yes": "No" ]</a>"
-				if(features["has_vag"])
-					dat += "<b>Vagina Type:</b> <a style='display:block;width:100px' href='?_src_=prefs;preference=vag_shape;task=input'>[features["vag_shape"]]</a>"
-					if(!pref_species.use_skintones)
-						dat += "<b>Vagina Color:</b></a><BR>"
-						dat += "<span style='border: 1px solid #161616; background-color: #[features["vag_color"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=vag_color;task=input'>Change</a><br>"
-					dat += "<b>Vagina Visibility:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=vag_visibility;task=input'>[features["vag_visibility"]]</a>"
-					dat += "<b>Has Womb:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=has_womb'>[features["has_womb"] == TRUE ? "Yes" : "No"]</a>"
-				dat += "</td>"
-				dat += APPEARANCE_CATEGORY_COLUMN
-				dat += "<h3>Breasts</h3>"
-				dat += "<a style='display:block;width:50px' href='?_src_=prefs;preference=has_breasts'>[features["has_breasts"] == TRUE ? "Yes" : "No" ]</a>"
-				if(features["has_breasts"])
-					if(!pref_species.use_skintones)
-						dat += "<b>Color:</b></a><BR>"
-						dat += "<span style='border: 1px solid #161616; background-color: #[features["breasts_color"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=breasts_color;task=input'>Change</a><br>"
-					dat += "<b>Cup Size:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=breasts_size;task=input'>[features["breasts_size"]]</a>"
-					dat += "<b>Breasts Shape:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=breasts_shape;task=input'>[features["breasts_shape"]]</a>"
-					dat += "<b>Breasts Visibility:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=breasts_visibility;task=input'>[features["breasts_visibility"]]</a>"
-					dat += "<b>Lactates:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=breasts_producing'>[features["breasts_producing"] == TRUE ? "Yes" : "No"]</a>"
-				dat += "</td>"
-				dat += APPEARANCE_CATEGORY_COLUMN
-				dat += "<h3>Belly</h3>"
-				dat += "<a style='display:block;width:50px' href='?_src_=prefs;preference=has_belly'>[features["has_belly"] == TRUE ? "Yes" : "No" ]</a>"
-				if(features["has_belly"])
-					if(!pref_species.use_skintones)
-						dat += "<b>Color:</b></a><BR>"
-						dat += "<span style='border: 1px solid #161616; background-color: #[features["belly_color"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=belly_color;task=input'>Change</a><br>"
-					dat += "<b>Belly Size:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=belly_size;task=input'>[features["belly_size"]]</a>"
-					dat += "<b>Belly Shape:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=belly_shape;task=input'>[features["belly_shape"]]</a>"
-					dat += "<b>Belly Visibility:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=belly_visibility;task=input'>[features["belly_visibility"]]</a>"
-				dat += "</td>"
-				dat += APPEARANCE_CATEGORY_COLUMN
-				dat += "<h3>Butt</h3>"
-				dat += "<a style='display:block;width:50px' href='?_src_=prefs;preference=has_butt'>[features["has_butt"] == TRUE ? "Yes" : "No"]</a>"
-				if(features["has_butt"])
-					if(!pref_species.use_skintones)
-						dat += "<b>Color:</b></a><BR>"
-						dat += "<span style='border: 1px solid #161616; background-color: #[features["butt_color"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=butt_color;task=input'>Change</a><br>"
-					dat += "<b>Butt Size:</b><a style='display:block;width:50px' href='?_src_=prefs;preference=butt_size;task=input'>[features["butt_size"]]</a>"
-					dat += "<b>Butt Visibility:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=butt_visibility;task=input'>[features["butt_visibility"]]</a>"
-				dat += "</td>"
-			dat += "</td>"
-			dat += "</tr></table>"*/
 
 		/// just kidding I moved it down here lol
 		if(ERP_TAB) // hoo haw preferences
@@ -1437,20 +1347,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<h2>Other content prefs</h2>"
 			dat += "<b>Breast Enlargement:</b> <a href='?_src_=prefs;preference=breast_enlargement'>[(cit_toggles & BREAST_ENLARGEMENT) ? "Allowed" : "Disallowed"]</a><br>"
 			dat += "<b>Penis Enlargement:</b> <a href='?_src_=prefs;preference=penis_enlargement'>[(cit_toggles & PENIS_ENLARGEMENT) ? "Allowed" : "Disallowed"]</a><br>"
-			dat += "<b>Butt Enlargement:</b> <a href='?_src_=prefs;preference=butt_enlargement'>[(cit_toggles & BUTT_ENLARGEMENT) ? "Allowed" : "Disallowed"]</a><br>"
-			dat += "<b>Belly Enlargement:</b> <a href='?_src_=prefs;preference=belly_enlargement'>[(cit_toggles & BELLY_ENLARGEMENT) ? "Allowed" : "Disallowed"]</a><br>"
-			dat += "<h2>Vore prefs</h2>"
-			dat += "<b>Master Vore Toggle:</b> <a href='?_src_=prefs;task=input;preference=master_vore_toggle'>[(master_vore_toggle) ? "Per Preferences" : "All Disabled"]</a><br>"
-			if(master_vore_toggle)
-				dat += "<b>Being Prey:</b> <a href='?_src_=prefs;task=input;preference=allow_being_prey'>[(allow_being_prey) ? "Allowed" : "Disallowed"]</a><br>"
-				dat += "<b>Being Fed Prey:</b> <a href='?_src_=prefs;task=input;preference=allow_being_fed_prey'>[(allow_being_fed_prey) ? "Allowed" : "Disallowed"]</a><br>"
-				dat += "<b>Digestion Damage:</b> <a href='?_src_=prefs;task=input;preference=allow_digestion_damage'>[(allow_digestion_damage) ? "Allowed" : "Disallowed"]</a><br>"
-				dat += "<b>Digestion Death:</b> <a href='?_src_=prefs;task=input;preference=allow_digestion_death'>[(allow_digestion_death) ? "Allowed" : "Disallowed"]</a><br>"
-				dat += "<b>Vore Messages:</b> <a href='?_src_=prefs;task=input;preference=allow_vore_messages'>[(allow_vore_messages) ? "Visible" : "Hidden"]</a><br>"
-				dat += "<b>Vore Trash Messages:</b> <a href='?_src_=prefs;task=input;preference=allow_trash_messages'>[(allow_trash_messages) ? "Visible" : "Hidden"]</a><br>"
-				dat += "<b>Vore Death Messages:</b> <a href='?_src_=prefs;task=input;preference=allow_death_messages'>[(allow_death_messages) ? "Visible" : "Hidden"]</a><br>"
-				dat += "<b>Vore Eating Sounds:</b> <a href='?_src_=prefs;task=input;preference=allow_eating_sounds'>[(allow_eating_sounds) ? "Audible" : "Muted"]</a><br>"
-				dat += "<b>Digestion Sounds:</b> <a href='?_src_=prefs;task=input;preference=allow_digestion_sounds'>[(allow_digestion_sounds) ? "Audible" : "Muted"]</a><br>"
 			dat += "</tr></table>"
 			dat += "<br>"
 
@@ -1593,12 +1489,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/one_or_some
 	var/size_flavor
 	switch(erp_tab_page)
-		if("has_butt")
-			setup_flags = DEF_BUTT_FLAGS
-			thing_name = "Butt"
-			one_or_some = "one"
-			size_flavor = "-XL"
-			feature_key = "butt"
 		if("has_vag")
 			setup_flags = DEF_VAG_FLAGS
 			thing_name = "Vagina"
@@ -1622,12 +1512,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/datum/sprite_accessory/taur/T = GLOB.taur_list[features["taur"]]
 					if(T.taur_mode & P.accepted_taurs)
 						fuckin_taur_penis = TRUE
-		if("has_belly")
-			setup_flags = DEF_BELLY_FLAGS
-			thing_name = "Belly"
-			one_or_some = "one"
-			size_flavor = "-XL"
-			feature_key = "belly"
 		if("has_womb")
 			setup_flags = DEF_WOMB_FLAGS
 			one_or_some = "one"
@@ -1708,11 +1592,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/override_string
 	var/hide_nad_flag
 	switch(has_name)
-		if(CS_BUTT)
-			magic_word = "Butt"
-			flag_string = "butt_visibility_flags"
-			override_string = "butt_visibility_override"
-			hide_nad_flag = HIDE_BUTT
 		if(CS_VAG)
 			magic_word = "Vagina"
 			flag_string = "vag_visibility_flags"
@@ -1728,11 +1607,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			flag_string = "cock_visibility_flags"
 			override_string = "cock_visibility_override"
 			hide_nad_flag = HIDE_PENIS
-		if(CS_BELLY)
-			magic_word = "Belly"
-			flag_string = "belly_visibility_flags"
-			override_string = "belly_visibility_override"
-			hide_nad_flag = HIDE_BELLY
 		if(CS_BOOB)
 			magic_word = "Breasts"
 			flag_string = "breasts_visibility_flags"
@@ -2498,14 +2372,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(!isnull(msg))
 						creature_ooc = msg
 
-				if("tbs")
-					var/new_tbs = input(user, "Are you a top, bottom, or switch? (or none of the above)", "Character Preference") as null|anything in TBS_LIST
-					if(new_tbs)
-						tbs = new_tbs
-				if("kisser")
-					var/newkiss = input(user, "What sort of person do you like to kisser?", "Character Preference") as null|anything in KISS_LIST
-					if(newkiss)
-						kisser = newkiss
 				if("age")
 					var/new_age = input(user, "Choose your character's age:\n([AGE_MIN]-[AGE_MAX])", "Character Preference") as num|null
 					if(new_age)
@@ -2522,27 +2388,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						custom_pixel_y = round(clamp(newy, PIXELSHIFT_MIN, PIXELSHIFT_MAX), 1)
 					else
 						custom_pixel_y = 0
-				////////////////// VORE STUFF /
-				if("master_vore_toggle")
-					TOGGLE_VAR(master_vore_toggle)
-				if("allow_being_prey")
-					TOGGLE_VAR(allow_being_prey)
-				if("allow_being_fed_prey")
-					TOGGLE_VAR(allow_being_fed_prey)
-				if("allow_digestion_damage")
-					TOGGLE_VAR(allow_digestion_damage)
-				if("allow_digestion_death")
-					TOGGLE_VAR(allow_digestion_death)
-				if("allow_trash_messages")
-					TOGGLE_VAR(allow_trash_messages)
-				if("allow_vore_messages")
-					TOGGLE_VAR(allow_vore_messages)
-				if("allow_death_messages")
-					TOGGLE_VAR(allow_death_messages)
-				if("allow_eating_sounds")
-					TOGGLE_VAR(allow_eating_sounds)
-				if("allow_digestion_sounds")
-					TOGGLE_VAR(allow_digestion_sounds)
 				if("flavor_text")
 					var/msg = stripped_multiline_input(usr, "Set the flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!", "Flavor Text", html_decode(features["flavor_text"]), MAX_FLAVOR_LEN, TRUE)
 					if(!isnull(msg))
@@ -3175,35 +3020,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(n_vis)
 						features["breasts_visibility"] = n_vis
 
-				if("belly_size")
-					var/min_B = CONFIG_GET(number/belly_min_size_prefs)
-					var/max_B = CONFIG_GET(number/belly_max_size_prefs)
-					var/new_length = input(user, "Belly size:\n([min_B]-[max_B])", "Character Preference") as num|null
-					if(new_length)
-						features["belly_size"] = clamp(round(new_length), min_B, max_B)
-
-				if("belly_shape")
-					var/new_shape
-					new_shape = input(user, "Belly Shape", "Character Preference") as null|anything in GLOB.belly_shapes_list
-					if(new_shape)
-						features["belly_shape"] = new_shape
-
-				if("belly_color")
-					var/new_belly_color = input(user, "Belly Color:", "Character Preference","#"+features["belly_color"]) as color|null
-					if(new_belly_color)
-						var/temp_hsv = RGBtoHSV(new_belly_color)
-						if(new_belly_color == "#000000")
-							features["belly_color"] = pref_species.default_color
-						else if(ReadHSV(temp_hsv)[3] >= ReadHSV(MINIMUM_MUTANT_COLOR)[3])
-							features["belly_color"] = sanitize_hexcolor(new_belly_color, 6)
-						else
-							to_chat(user,span_danger("Invalid color. Your color is not bright enough."))
-
-				if("belly_visibility")
-					var/n_vis = input(user, "Belly Visibility", "Character Preference") as null|anything in CONFIG_GET(keyed_list/safe_visibility_toggles)
-					if(n_vis)
-						features["belly_visibility"] = n_vis
-
 				if("vag_shape")
 					var/new_shape
 					new_shape = input(user, "Vagina Type", "Character Preference") as null|anything in GLOB.vagina_shapes_list
@@ -3225,29 +3041,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/n_vis = input(user, "Vagina Visibility", "Character Preference") as null|anything in CONFIG_GET(keyed_list/safe_visibility_toggles)
 					if(n_vis)
 						features["vag_visibility"] = n_vis
-
-				if("butt_color")
-					var/new_buttcolor = input(user, "Butt color:", "Character Preference","#"+features["butt_color"]) as color|null
-					if(new_buttcolor)
-						var/temp_hsv = RGBtoHSV(new_buttcolor)
-						if(new_buttcolor == "#000000")
-							features["butt_color"] = pref_species.default_color
-						else if(ReadHSV(temp_hsv)[3] >= ReadHSV(MINIMUM_MUTANT_COLOR)[3])
-							features["butt_color"] = sanitize_hexcolor(new_buttcolor, 6)
-						else
-							to_chat(user,"<span class='danger'>Invalid color. Your color is not bright enough.</span>")
-
-				if("butt_size")
-					var/min_B = CONFIG_GET(number/butt_min_size_prefs)
-					var/max_B = CONFIG_GET(number/butt_max_size_prefs)
-					var/new_length = input(user, "Butt size:\n([min_B]-[max_B])", "Character Preference") as num|null
-					if(new_length)
-						features["butt_size"] = clamp(round(new_length), min_B, max_B)
-
-				if("butt_visibility")
-					var/n_vis = input(user, "Butt Visibility", "Character Preference") as null|anything in CONFIG_GET(keyed_list/safe_visibility_toggles)
-					if(n_vis)
-						features["butt_visibility"] = n_vis
 
 				if("ooccolor")
 					var/new_ooccolor = input(user, "Choose your OOC colour:", "Game Preference",ooccolor) as color|null
@@ -3508,10 +3301,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					features["has_vag"] = !features["has_vag"]
 				if("has_womb")
 					features["has_womb"] = !features["has_womb"]
-				if("has_butt")
-					features["has_butt"] = !features["has_butt"]
-				if("has_belly")
-					features["has_belly"] = !features["has_belly"]
 				if("widescreenpref")
 					widescreenpref = !widescreenpref
 					user.client.change_view(CONFIG_GET(string/default_view))
@@ -3753,12 +3542,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("penis_enlargement")
 					cit_toggles ^= PENIS_ENLARGEMENT
-
-				if("butt_enlargement")
-					cit_toggles ^= BUTT_ENLARGEMENT
-
-				if("belly_enlargement")
-					cit_toggles ^= BELLY_ENLARGEMENT
 
 				if("feminization")
 					cit_toggles ^= FORCED_FEM

@@ -927,7 +927,7 @@
 	emote_taunt_sound = list('sound/effects/bubbles.ogg')
 	emote_taunt = list("blorgles")
 	emote_taunt_sound = list('sound/misc/splort.ogg')
-	idlesound = list('sound/vore/prey/squish_01.ogg') //God forgive me for what I must do. Its just a perfect sound. ~TK
+	idlesound = list('sound/misc/splort.ogg')
 	death_sound = 'sound/misc/crack.ogg'
 	waddle_amount = 4
 	waddle_up_time = 3

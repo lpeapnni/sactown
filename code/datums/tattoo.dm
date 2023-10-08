@@ -97,8 +97,6 @@
 		return TRUE // how the heck did you sever a chest? nice
 	var/obj/item/organ/genital/grundle
 	switch(tat_location)
-		if(TATTOO_TRAMP_STAMP, TATTOO_LEFT_ASS, TATTOO_RIGHT_ASS) // Butt tattoo?
-			grundle = grundlehaver.has_butt()
 		if(TATTOO_WOMB_TATTOO)
 			grundle = grundlehaver.has_vagina()
 			if(!grundle)

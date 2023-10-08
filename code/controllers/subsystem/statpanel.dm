@@ -8,12 +8,6 @@ SUBSYSTEM_DEF(statpanels)
 	var/encoded_global_data
 	var/mc_data_encoded
 	var/list/cached_images = list()
-	var/list/cached_boykissers = list()
-	var/list/cached_girlkissers = list()
-	var/list/cached_anykissers = list()
-	var/list/cached_tops = list()
-	var/list/cached_bottoms = list()
-	var/list/cached_switches = list()
 
 /datum/controller/subsystem/statpanels/fire(resumed = FALSE)
 	if (!resumed)
@@ -24,12 +18,8 @@ SUBSYSTEM_DEF(statpanels)
 			"Round Number: [GLOB.round_id ? GLOB.round_id : "NULL"]",
 			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
 			"Round Time: [ROUND_TIME]",
-			"Station Time: [STATION_TIME_TIMESTAMP(FALSE, world.time)]",
-			"Server Anger Level: [SStime_track.get_anger()]",
-			"😘♂: [LAZYLEN(cached_boykissers)], 😘♀: [LAZYLEN(cached_girlkissers)], 😘⚤: [LAZYLEN(cached_anykissers)]",
-			"Tops: [LAZYLEN(cached_tops)]",
-			"Switches: [LAZYLEN(cached_switches)]",
-			"Bottoms: [LAZYLEN(cached_bottoms)]",
+			"Wasteland Time: [STATION_TIME_TIMESTAMP(FALSE, world.time)]",
+			"Server Time Dilation: [SStime_track.get_anger()]",
 		)
 
 		if(SSshuttle.emergency)

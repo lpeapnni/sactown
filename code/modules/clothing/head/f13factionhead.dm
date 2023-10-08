@@ -288,16 +288,17 @@ obj/item/clothing/head/helmet/f13/enclave/usmcriot
 	mob_overlay_icon = 'icons/fallout/onmob/clothes/head.dmi'
 	lefthand_file = ""
 	righthand_file = ""
+	armor_tokens = list(ARMOR_MODIFIER_UP_DT_T2)
 	flags_inv = HIDEEARS|HIDEHAIR
 	strip_delay = 50
 	dynamic_hair_suffix = ""
 	dynamic_fhair_suffix = ""
 	salvage_loot = list(/obj/item/stack/crafting/armor_plate = 1)
 
-/* /obj/item/clothing/head/helmet/f13/legion/Initialize()
+/obj/item/clothing/head/helmet/f13/legion/Initialize()
 	. = ..()
 	AddComponent(/datum/component/armor_plate)
- */
+
 /obj/item/clothing/head/helmet/f13/legion/marsheaddress
 	name = "priestess' headdress"
 	desc = "A headdress made of feathers and decorated with two golden tassles."
@@ -307,22 +308,24 @@ obj/item/clothing/head/helmet/f13/enclave/usmcriot
 	salvage_loot = list()
 
 /obj/item/clothing/head/helmet/f13/legion/recruit
-	name = "leather skullcap"
-	desc = "It's a leather skullcap commonly worn by more wastey wastelanders."
+	name = "legion recruit helmet"
+	desc = "It's a leather skullcap issued to recruits."
 	icon_state = "legion-recruit"
 	item_state = "legion-recruit"
+	armor = list("melee" = 33, "bullet" = 25, "laser" = 5, "energy" = 10, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 25, "acid" = 0, "wound" = 40)
 	flags_inv = HIDEEARS|HIDEHAIR
 
 /obj/item/clothing/head/helmet/f13/legion/prime
-	name = "larper prime helmet"
-	desc = "A helmet from reinforced leather with a red peak. Despite being a replica it seems decent quality."
+	name = "legion prime helmet"
+	desc = "A helmet from reinforced leather with a red peak."
 	item_state = "legion-prime"
 	icon_state = "legion-prime"
+	armor = list("melee" = 45, "bullet" = 30, "laser" = 10, "energy" = 10, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 25, "acid" = 0, "wound" = 40)
 	flags_inv = HIDEEARS|HIDEHAIR
 
 /obj/item/clothing/head/helmet/f13/legion/prime/slavemaster
-	name = "middlemanagement helmet"
-	desc = "The distinct helmet used by cruel taskmasters."
+	name = "slavemaster helmet"
+	desc = "The distinct helmet used by slavemasters."
 	icon_state = "legion-slavemaster"
 	item_state = "legion-slavemaster"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEHAIR
@@ -330,67 +333,77 @@ obj/item/clothing/head/helmet/f13/enclave/usmcriot
 	dog_fashion = null
 
 /obj/item/clothing/head/helmet/f13/legion/vet
-	name = "larper 'veteran' helmet"
-	desc = "It's a 'metal' larping helmet, clearly inspired by old world sports uniforms and a love of men."
+	name = "legion veteran helmet"
+	desc = "It's a metal legion veteran helmet, clearly inspired by old world sports uniforms."
 	icon_state = "legion-veteran"
 	item_state = "legion-veteran"
+	armor = list("melee" = 55, "bullet" = 37, "laser" = 25, "energy" = 15, "bomb" = 30, "bio" = 5, "rad" = 5, "fire" = 35, "acid" = 0, "wound" = 40)
 	salvage_loot = list(/obj/item/stack/crafting/armor_plate = 2)
 
 /obj/item/clothing/head/helmet/f13/legion/vet/explorer
-	name = "padded tanker's cap"
-	desc = "It's a hooded cap with extra padding and built in voids to wear bulky headphones under. T-55 not included, sadly this alone won't let you be tank girl."
+	name = "legion scout hood"
+	desc = "It's a leather hood with metal reinforcments and built in headphones to plug the radio into."
 	icon_state = "legion-explorer"
 	item_state = "legion-explorer"
+	armor = list("melee" = 37, "bullet" = 24, "laser" = 15, "energy" = 10, "bomb" = 40, "bio" = 20, "rad" = 20, "fire" = 25, "acid" = 0, "wound" = 40)
 
 /obj/item/clothing/head/helmet/f13/legion/vet/combvexil
-	name = "larping bear vexillarius helmet"
-	desc = "This helmet is decorated with the pelt of an assland bear and menaces with leather spikes."
+	name = "legion bear vexillarius helmet"
+	desc = "This helmet is decorated with the pelt of a ashland bear."
 	icon_state = "legion-vex"
 	item_state = "legion-vex"
+	armor = list("melee" = 57, "bullet" = 42, "laser" = 42, "energy" = 20, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 0, "wound" = 40)
 
 /obj/item/clothing/head/helmet/f13/legion/vet/vexil
-	name = "Furcon fox vexillarius helmet"
-	desc = "This helmet is decorated with the pelt of a desert fox. Or... maybe its just a fursuit head missing parts.  Its hard to tell."
+	name = "legion fox vexillarius helmet"
+	desc = "This helmet is decorated with the pelt of a desert fox."
 	icon_state = "legion-vex-alt"
 	item_state = "legion-vex-alt"
+	armor = list("melee" = 57, "bullet" = 42, "laser" = 42, "energy" = 20, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 0, "wound" = 40)
 
 /obj/item/clothing/head/helmet/f13/legion/vet/nightvexil
-	name = "larper's nightstalker vexillarius helmet"
-	desc = "This helmet is decorated with the pelt of a nightstalkers unkempt butt fur.  You should probably wash it."
+	name = "legion nightstalker vexillarius helmet"
+	desc = "This helmet is decorated with the pelt of a nightstalker."
 	icon_state = "legion-vex-night"
 	item_state = "legion-vex-night"
+	armor = list("melee" = 70, "bullet" = 42, "laser" = 42, "energy" = 20, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 0, "wound" = 40)
 
 /obj/item/clothing/head/helmet/f13/legion/venator
-	name = "the most lost explorer's hood"
-	desc = "A leather hood with a sturdy metal skullcap and a gold compass insignia in the front."
+	name = "legion explorer hood"
+	desc = "A leather hood with a sturdy metal skullcap and a gold bull insignia in the front."
 	icon_state = "legion-venator"
 	item_state = "legion-venator"
+	armor = list("melee" = 50, "bullet" = 35, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 25, "acid" = 0, "wound" = 40)
 	salvage_loot = list(/obj/item/stack/crafting/armor_plate = 2)
 
 /obj/item/clothing/head/helmet/f13/legion/orator
-	name = "just a bunch of leaves"
-	desc = "A 'laurel wreath' that is made of branches and trash. It's pretending to be a laurel, a type of evergreen shrub or small tree. This one appears to be out of whatever was laying around, however. In Ancient Rome, it was worn on the head as a symbol of triumph. But who the fuck would have that here?"
+	name = "laurel wreath"
+	desc = "A laurel wreath is made of branches and leaves of the laurel, a type of evergreen shrub or small tree. This one appears to be out of metal,however. In Ancient Rome, it was worn on the head as a symbol of triumph."
 	icon_state = "legion-orator"
 	item_state = "legion-orator"
 	flags_inv = null
+	armor = list("melee" = 50, "bullet" = 35, "laser" = 20, "energy" = 10, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 25, "acid" = 0, "wound" = 40)
 
 /obj/item/clothing/head/helmet/f13/legion/recruit/decan
-	name = "larper recruit deci-anus helmet"
-	desc = "This reinforced leather helmet has a plume of black and dark red feathers that are hiding ten buttholes under them. Who the fuck made this?"
+	name = "legion recruit decanus helmet"
+	desc = "This reinforced leather helmet has a plume of black and dark red feathers."
 	icon_state = "legion-decrec"
 	item_state = "legion-decrec"
+	armor = list("melee" = 40, "bullet" = 30, "laser" = 5, "energy" = 10, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 25, "acid" = 0, "wound" = 40)
 
 /obj/item/clothing/head/helmet/f13/legion/prime/decan
-	name = "amazon prime decanus helmet"
-	desc = "This reinforced leather helmet with a red peak has a plume of black feathers and was a steal.  You should have bought four."
+	name = "legion prime decanus helmet"
+	desc = "This reinforced leather helmet with a red peak has a plume of black feathers."
 	item_state = "legion-decprime"
 	icon_state = "legion-decprime"
+	armor = list("melee" = 45, "bullet" = 35, "laser" = 10, "energy" = 10, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 25, "acid" = 0, "wound" = 40)
 
 /obj/item/clothing/head/helmet/f13/legion/heavy
-	name = "reinforced amazon veteran decanus helmet"
-	desc = "A metal helmet with 'ballistic' visor and a plume, denoting veteran Decanus status. You're pretty sure it was made for airsoft."
+	name = "reinforced legion veteran decanus helmet"
+	desc = "A metal helmet with ballistic visor and a plume, denoting veteran Decanus status."
 	icon_state = "legion-decvet"
 	item_state = "legion-decvet"
+	armor = list("melee" = 60, "bullet" = 46, "laser" = 25, "energy" = 15, "bomb" = 25, "bio" = 50, "rad" = 20, "fire" = 70, "acid" = 0, "wound" = 50)
 	actions_types = list(/datum/action/item_action/toggle)
 	salvage_loot = list(/obj/item/stack/crafting/armor_plate = 2)
 
@@ -400,48 +413,55 @@ obj/item/clothing/head/helmet/f13/enclave/usmcriot
 	item_state = "legion-decvetup"
 
 /obj/item/clothing/head/helmet/f13/legion/vet/decan
-	name = "Larpers veteran decanus 'helmet'"
-	desc = "It's a metal 'helmet' (its a pot that they beat around someones head until it was vaguely head shaped) with an array of red, white and black feathers, unmistakably a Veteran Decanus."
+	name = "legion veteran decanus helmet"
+	desc = "It's a metal helmet with an array of red, white and black feathers, unmistakably a Veteran Decanus."
 	icon_state = "legion-decvet-alt"
 	item_state = "legion-decvet-alt"
+	armor = list("melee" = 60, "bullet" = 46, "laser" = 25, "energy" = 15, "bomb" = 25, "bio" = 50, "rad" = 20, "fire" = 70, "acid" = 0, "wound" = 50)
 
 /obj/item/clothing/head/helmet/f13/legion/centurion
-	name = "legion's of centurions helmet"
-	desc = "That's a helmet of some sort, beaten out of a CN9-Ds StarGuard III armor.  How this Lyran battemechs chassis managed to be collected in the wacky wastelands of this place no one knows.  But it's stylish enough to make a Capellan vomit."
+	name = "legion centurion helmet"
+	desc = "A sturdy helmet from steel and brass with a red horizontal plume."
 	icon_state = "legion-centurion"
 	item_state = "legion-centurion"
+	armor = list("melee" = 70, "bullet" = 45, "laser" = 45, "energy" = 25, "bomb" = 45, "bio" = 20, "rad" = 20, "fire" = 45, "acid" = 0, "wound" = 55)
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	salvage_loot = list(/obj/item/stack/crafting/armor_plate = 3)
 
 /obj/item/clothing/head/helmet/f13/legion/rangercent
 	name = "ranger-hunter centurion helmet"
-	desc = "Level 2 gameplay is really overrated, I prefer the succession wars personally.  Wait- what does that intrusive thought even mean?"
+	desc = "The helmet of an NCR ranger, refit to serve as a Centurions helmet."
 	icon_state = "legion-rangercent"
 	item_state = "legion-rangercent"
+	armor = list("melee" = 40, "bullet" = 45, "laser" = 25, "energy" = 15, "bomb" = 55, "bio" = 60, "rad" = 60, "fire" = 90, "acid" = 20, "wound" = 55)
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	salvage_loot = list(/obj/item/stack/crafting/armor_plate = 3)
 
-/obj/item/clothing/head/helmet/f13/legion/palacent  //more like placenta amirite ~TK
+/obj/item/clothing/head/helmet/f13/legion/palacent
 	name = "paladin-slayer centurion helmet"
-	desc = "Holding this object makes you feel like your genitals are shriveling up.  If you have balls, you're certain they got smaller.  Whoever wore this thing in the past had serious ego issues."
+	desc = "The once-marvelous helmet of the T-45d power armor set, repurposed by the Legion into a symbol of its might. It has a large plume of red horse hair across the top of it going horizontally, donoting the rank of Centurion."
 	icon_state = "legion-palacent"
 	item_state = "legion-palacent"
+	armor = list("melee" = 55, "bullet" = 45, "laser" = 70, "energy" = 65, "bomb" = 55, "bio" = 20, "rad" = 20, "fire" = 25, "acid" = 0, "wound" = 75)
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	salvage_loot = list(/obj/item/stack/crafting/armor_plate = 3)
+	flags_cover = HEADCOVERSEYES
+	flags_inv = HIDEEARS|HIDEEYES|HIDEHAIR|HIDESNOUT|HIDEFACIALHAIR
 
 /obj/item/clothing/head/helmet/f13/legion/legate
-	name = "canibal leg-ater helmet"
-	desc = "A custom forged steel full helmet complete with abstract points and arches. The face is extremely intimidating, as it was meant to be. This particular one was ordered to be forged by Lil Caesar, given to his second leg-ater in exchange for his undying loyalty to the pizza chain."
+	name = "legion legate helmet"
+	desc = "A custom forged steel full helmet complete with abstract points and arches. The face is extremely intimidating, as it was meant to be. This particular one was ordered to be forged by Caesar, given to his second legate in exchange for his undying loyalty to Caesar."
 	icon_state = "legion-legate"
 	item_state = "legion-legate"
+	armor = list("melee" = 60, "bullet" = 60, "laser" = 40, "energy" = 35, "bomb" = 45, "bio" = 60, "rad" = 20, "fire" = 80, "acid" = 0, "wound" = 60)
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
-	flags_inv = HIDEEARS|HIDEEYES|HIDEHAIR
+	flags_inv = HIDEEARS|HIDEEYES|HIDEHAIR|HIDESNOUT|HIDEFACIALHAIR
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	salvage_loot = list(/obj/item/stack/crafting/armor_plate = 5)
 
 /obj/item/clothing/head/f13/servant
-	name = "Linen headwrap"
-	desc = "A simple uncoloured linen cloth wrapped around the head, the mark of a primed maid (femboy or otherwise) trained in household work."
+	name = "servant headwear"
+	desc = "A simple uncoloured linen cloth wrapped around the head, the mark of a servant slave trained in household work."
 	icon = 'icons/fallout/clothing/hats.dmi'
 	mob_overlay_icon = 'icons/fallout/onmob/clothes/head.dmi'
 	icon_state = "legion-servant"
@@ -450,8 +470,8 @@ obj/item/clothing/head/helmet/f13/enclave/usmcriot
 	flags_cover = null
 
 /obj/item/clothing/head/f13/auxilia
-	name = "bitter tasting headwear"
-	desc = "A soft red cap with a black band, used by people who tend to get the word bitters screamed at them a lot."
+	name = "auxilia headwear"
+	desc = "A soft red cap with a black band, used by female Auxilia outside camp."
 	icon = 'icons/fallout/clothing/hats.dmi'
 	mob_overlay_icon = 'icons/fallout/onmob/clothes/head.dmi'
 	icon_state = "legion-aux"

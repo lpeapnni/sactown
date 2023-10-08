@@ -103,23 +103,6 @@
 
 /obj/item/clothing/head/mob_holder/ComponentInitialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_VORE_ATOM_DEVOURED, .proc/release)
-	RegisterSignal(src, COMSIG_VORE_CAN_EAT, .proc/relay_caneat)
-	RegisterSignal(src, COMSIG_VORE_CAN_BE_EATEN, .proc/relay_can_be_eaten)
-	RegisterSignal(src, COMSIG_VORE_CAN_BE_FED_PREY, .proc/relay_can_be_fed)
-	RegisterSignal(src, COMSIG_VORE_SNIFF_LIVING, .proc/relay_sniff)
-
-/obj/item/clothing/head/mob_holder/proc/relay_caneat()
-	return SEND_SIGNAL(held_mob, COMSIG_VORE_CAN_EAT)
-
-/obj/item/clothing/head/mob_holder/proc/relay_can_be_eaten()
-	return SEND_SIGNAL(held_mob, COMSIG_VORE_CAN_BE_EATEN)
-
-/obj/item/clothing/head/mob_holder/proc/relay_can_be_fed()
-	return SEND_SIGNAL(held_mob, COMSIG_VORE_CAN_BE_FED_PREY)
-
-/obj/item/clothing/head/mob_holder/proc/relay_sniff(datum/source, mob/living/living_sniffer)
-	return SEND_SIGNAL(held_mob, COMSIG_VORE_SNIFF_LIVING, living_sniffer)
 
 /obj/item/clothing/head/mob_holder/proc/assimilate(mob/living/target)
 	target.setDir(SOUTH)

@@ -138,35 +138,3 @@
 /datum/sprite_accessory/breasts/udders
 	icon_state = "udders"
 	name = "Udders"
-
-//BUTT BE HERE
-/datum/sprite_accessory/butt
-	icon = 'icons/obj/genitals/butt_onmob.dmi'
-	icon_state = "butt"
-	name = "butt"
-	color_src = "butt_color"
-
-/datum/sprite_accessory/butt/pair
-	icon_state = "pair"
-	name = "Pair"
-
-//BELLY BELLY BELLY
-/datum/sprite_accessory/belly
-	icon = 'icons/obj/genitals/belly_onmob.dmi'
-	icon_state = "obese"
-	name = "Belly"
-	color_src = "belly_color"
-
-/datum/sprite_accessory/belly/tummy
-	icon_state = "tummy"
-	name = "Tummy"
-
-/// obeast
-/datum/sprite_accessory/belly/obese
-	icon_state = "obese"
-	name = "Obese"
-
-/// udders
-/datum/sprite_accessory/belly/udders
-	icon_state = "udders"
-	name = "Udders"

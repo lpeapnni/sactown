@@ -22,16 +22,10 @@
 	else
 		gulp_size = max(round(reagents.total_volume / 5), 5)
 
-/obj/item/reagent_containers/food/drinks/take_a_bellybite(datum/source, obj/vore_belly/gut, mob/living/vorer)
-	INVOKE_ASYNC(src, .proc/attempt_forcedrink, vorer, vorer, TRUE, TRUE, TRUE)
-	if(gut.can_taste)
-		checkLiked(min(gulp_size/reagents.total_volume, 1), vorer)
-	return TRUE
-
 /obj/item/reagent_containers/food/drinks/attack(mob/living/M, mob/user, def_zone)
 	INVOKE_ASYNC(src, .proc/attempt_forcedrink, M, user)
 
-/obj/item/reagent_containers/food/drinks/proc/attempt_forcedrink(mob/living/M, mob/user, force, silent, vorebite)
+/obj/item/reagent_containers/food/drinks/proc/attempt_forcedrink(mob/living/M, mob/user, force, silent)
 	if(!reagents || !reagents.total_volume)
 		to_chat(user, span_warning("[src] is empty!"))
 		return 0
@@ -43,7 +37,7 @@
 		to_chat(user, span_warning("[src]'s lid hasn't been opened!"))
 		return 0
 
-	if(M == user || vorebite)
+	if(M == user)
 		if(!silent)
 			user.visible_message(span_notice("[user] swallows a gulp of [src]."), span_notice("You swallow a gulp of [src]."))
 	else
@@ -58,8 +52,7 @@
 		log_combat(user, M, "fed", reagents.log_list())
 
 	var/fraction = min(gulp_size/reagents.total_volume, 1)
-	if(!vorebite)
-		checkLiked(fraction, M)
+	checkLiked(fraction, M)
 	reagents.reaction(M, INGEST, fraction)
 	reagents.trans_to(M, gulp_size, log = TRUE)
 	if(!silent)
@@ -517,7 +510,6 @@
 	playsound(user.loc,'sound/weapons/pierce.ogg', rand(10,50), 1)
 	var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(vorebite ? loc : get_turf(src))
 	crushed_can.icon_state = icon_state
-	SEND_SIGNAL(loc, COMSIG_BELLY_HANDLE_TRASH, crushed_can)
 	qdel(src)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/attack_self(mob/user)
@@ -532,15 +524,6 @@
 	ENABLE_BITFIELD(reagents.reagents_holder_flags, OPENCONTAINER)
 	spillable = TRUE
 	return
-
-/obj/item/reagent_containers/food/drinks/soda_cans/take_a_bellybite(datum/source, obj/vore_belly/gut, mob/living/vorer)
-	if(!is_drainable())
-		INVOKE_ASYNC(src, .proc/pop_top, vorer, vorer, TRUE, TRUE, TRUE)
-		return TRUE
-	if(!reagents.total_volume)
-		INVOKE_ASYNC(src, .proc/crush_can, vorer, vorer, TRUE, TRUE, TRUE)
-		return TRUE
-	return ..()
 
 /obj/item/reagent_containers/food/drinks/soda_cans/cola
 	name = "Space Cola"

@@ -761,24 +761,6 @@ GLOBAL_VAR_INIT(crotch_call_cooldown, 0)
 
 	dat += "<tr class='talign'><td class='talign'>"
 	dat += "<div class='gen_container'>"
-	dat += "<div class='gen_setting_name'>See Bellies:</div>" // everyone can has_cheezburger
-	dat += {"<a 
-				class='clicky' 
-				href='
-					?src=[REF(src)];
-					action=toggle_hide_genitals;
-					genital_flag=[HIDE_BELLY]'>
-						[CHECK_BITFIELD(client.prefs.features["genital_hide"], HIDE_BELLY) ? "No" : "Yes"]
-			</a>"}
-	dat += "<div class='gen_setting_name'>See Butts:</div>" // everyone can has_cheezburger
-	dat += {"<a 
-				class='clicky' 
-				href='
-					?src=[REF(src)];
-					action=toggle_hide_genitals;
-					genital_flag=[HIDE_BUTT]'>
-						[CHECK_BITFIELD(client.prefs.features["genital_hide"], HIDE_BUTT) ? "No" : "Yes"]
-			</a>"}
 	dat += "<div class='gen_setting_name'>See Breasts:</div>" // everyone can has_cheezburger
 	dat += {"<a 
 				class='clicky' 

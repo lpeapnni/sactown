@@ -85,11 +85,6 @@
 						return FALSE
 					if(B?.covers_chest)
 						return FALSE
-				if(ORGAN_BELLY_GENITALS)
-					if(T?.covers_belly)
-						return FALSE
-					if(B?.covers_belly)
-						return FALSE
 				if(ORGAN_GROIN_GENITALS)
 					if(T?.covers_groin)
 						return FALSE
@@ -97,9 +92,9 @@
 						return FALSE
 	if(CHECK_BITFIELD(genital_visflags, GENITAL_RESPECT_CLOTHING) && ishuman(owner))
 		switch(slot) //update as more genitals are added Okay - lagg
-			if(ORGAN_BELLY_GENITALS, ORGAN_CHEST_GENITALS)
+			if(ORGAN_CHEST_GENITALS)
 				return owner.is_chest_exposed()
-			if(ORGAN_GROIN_GENITALS) // heard it here first folks, belly is in the groin // why do my stupid comments stop being relevant just one PR after I make them
+			if(ORGAN_GROIN_GENITALS)
 				return owner.is_groin_exposed()
 
 /// fed all the flags at once on init, fed one at a time when poked by the verb
@@ -467,12 +462,8 @@
 		give_genital(/obj/item/organ/genital/testicles, FALSE)
 	if(dna.features["has_breasts"])
 		give_genital(/obj/item/organ/genital/breasts, FALSE)
-	if(dna.features["has_butt"])
-		give_genital(/obj/item/organ/genital/butt, FALSE)
 	if(dna.features["has_cock"])
 		give_genital(/obj/item/organ/genital/penis, FALSE)
-	if(dna.features["has_belly"])
-		give_genital(/obj/item/organ/genital/belly, FALSE)
 	update_body(TRUE)
 
 /mob/living/carbon/human/proc/give_genital(obj/item/organ/genital/G, update = TRUE)
@@ -636,29 +627,20 @@ GLOBAL_LIST_INIT(genital_layers, list(
 
 	var/organCheck = locate(/obj/item/organ/genital) in internal_organs
 	var/breastCheck = getorganslot(ORGAN_SLOT_BREASTS)
-	var/willyCheck = getorganslot(ORGAN_SLOT_PENIS)
-	var/buttCheck = getorganslot(ORGAN_SLOT_BUTT)
-	var/bellyCheck = getorganslot(ORGAN_SLOT_BELLY)
+	var/cockCheck = getorganslot(ORGAN_SLOT_PENIS)
 
 	if(organCheck == FALSE)
 		if(src.dna.species.fixed_mut_color)
 			dna.features["cock_color"] = "[dna.species.fixed_mut_color]"
 			dna.features["breasts_color"] = "[dna.species.fixed_mut_color]"
-			dna.features["butt_color"] = "[dna.species.fixed_mut_color]"
-			dna.features["belly_color"] = "[dna.species.fixed_mut_color]"
 			return
 		//So people who haven't set stuff up don't get rainbow surprises.
 		dna.features["cock_color"] = "[dna.features["mcolor"]]"
 		dna.features["breasts_color"] = "[dna.features["mcolor"]]"
-		dna.features["butt_color"] = "[dna.features["mcolor"]]"
-		dna.features["belly_color"] = "[dna.features["mcolor"]]"
+
 	else //If there's a new organ, make it the same colour.
 		if(breastCheck == FALSE)
 			dna.features["breasts_color"] = dna.features["cock_color"]
-		else if (willyCheck == FALSE)
+		else if (cockCheck == FALSE)
 			dna.features["cock_color"] = dna.features["breasts_color"]
-		else if (buttCheck == FALSE)
-			dna.features["butt_color"] = dna.features["cock_color"] ? dna.features["cock_color"] : dna.features["breasts_color"]
-		else if (bellyCheck == FALSE)
-			dna.features["belly_color"] = dna.features["cock_color"] ? dna.features["cock_color"] : dna.features["breasts_color"]
 	return TRUE

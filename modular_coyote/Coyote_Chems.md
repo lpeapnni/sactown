@@ -410,19 +410,15 @@ These chems lie on the cutting edge of chemical technology, and as such are not 
 |<a href="#Modesty milk"><h5 id="Modesty milk">![#E60584](https://placehold.it/15/E60584/000000?text=+)Modesty milk</h5></a> pH: 7 | N/A |  | A volatile collodial mixture derived from milk that encourages mammary reduction via a potent estrogen mix. Produced by reacting impure Succubus milk. | <ul><li>Metabolism rate: 0.125u/s</li>   </ul>|
 |<a href="#Incubus draft"><h5 id="Incubus draft">![#888888](https://placehold.it/15/888888/000000?text=+)Incubus draft</h5></a> pH: 7 | N/A |  | A volatile collodial mixture derived from various masculine solutions that encourages a larger gentleman's package via a potent testosterone mix, formula derived from a collaboration from Fermichem  and Doctor Ronald Hyatt, who is well known for his phallus palace. | <ul><li>Metabolism rate: 0.25u/s</li> <li>Overdose: 100u</li>  </ul>|
 |<a href="#Chastity draft"><h5 id="Chastity draft">![#888888](https://placehold.it/15/888888/000000?text=+)Chastity draft</h5></a> pH: 7 | N/A |  | A volatile collodial mixture derived from various masculine solutions that encourages a smaller gentleman's package via a potent testosterone mix. Produced by reacting impure Incubus draft. | <ul><li>Metabolism rate: 0.25u/s</li>   </ul>|
-|<a href="#Callipygian Cream"><h5 id="Callipygian Cream">![#e8ff1b](https://placehold.it/15/e8ff1b/000000?text=+)Callipygian Cream</h5></a> pH: 7 | N/A |  | A mixture of natural vitamins and targeted hormonal growth serums, causing butt enlargement in humanoids. | <ul><li>Metabolism rate: 0.2u/s</li> <li>Overdose: 100u</li>  </ul>|
-|<a href="#Callipygian Skim"><h5 id="Callipygian Skim">![#faffd5](https://placehold.it/15/faffd5/000000?text=+)Callipygian Skim</h5></a> pH: 7 | N/A |  | A medicine used to treat organomegaly in a patient's ass. | <ul><li>Metabolism rate: 0.25u/s</li>   </ul>|
-|<a href="#Fortified butter"><h5 id="Fortified butter">![#e8ff1b](https://placehold.it/15/e8ff1b/000000?text=+)Fortified butter</h5></a> pH: 7 | N/A |  | A mixture of high-calorie compounds and hormones designed to enlarge a person's belly. | <ul><li>Metabolism rate: 0.2u/s</li> <li>Overdose: 100u</li>  </ul>|
-|<a href="#weight-loss shake"><h5 id="weight-loss shake">![#faffd5](https://placehold.it/15/faffd5/000000?text=+)weight-loss shake</h5></a> pH: 7 | N/A |  | A powerful weight-loss drug. | <ul><li>Metabolism rate: 0.25u/s</li>   </ul>|
 
 
-# DISPENCEABLE SOFT DRINKS
+# DISPENSABLE SOFT DRINKS
 
 |Name | Reagents | Reaction vars | Description | Chem properties |
 |---|---|---|-----------|---|
 
 
-# DISPENCEABLE HARD DRINKS
+# DISPENSABLE HARD DRINKS
 
 |Name | Reagents | Reaction vars | Description | Chem properties |
 |---|---|---|-----------|---|

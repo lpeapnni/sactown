@@ -418,7 +418,7 @@
 
 /obj/structure/chair/stool
 	name = "stool"
-	desc = "Apply butt."
+	desc = "For sitting."
 	icon = 'icons/obj/chairs.dmi'
 	icon_state = "stool"
 	can_buckle = 0

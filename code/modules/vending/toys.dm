@@ -72,9 +72,7 @@
 		/obj/item/tattoo_holder/blank = 20,
 		/obj/item/tattoo_holder/blank/temporary = 20,
 		/obj/item/storage/pill_bottle/breast_enlarger = 5,
-		/obj/item/storage/pill_bottle/butt_enlarger = 5,
 		/obj/item/storage/pill_bottle/penis_enlarger = 5,
-		/obj/item/storage/pill_bottle/belly_enlarger = 5,
 		/obj/item/storage/pill_bottle/random = 10)
 
 	default_price = PRICE_REALLY_CHEAP
