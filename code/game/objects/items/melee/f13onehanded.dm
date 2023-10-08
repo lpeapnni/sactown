@@ -239,13 +239,11 @@
 
 /obj/item/melee/onehanded/knife/ritualdagger
 	name = "ritual dagger"
-	desc = "An ancient blade used to carry out spiritual and mystic rituals."
+	desc = "An ancient blade used to carry out the spiritual rituals of the Wayfarer people."
 	icon_state = "knife_ritual"
 	item_state = "knife_ritual"
 	force = 25
 	custom_materials = null
-	tool_behaviour = TOOL_RITUAL
-	toolspeed = 1
 
 obj/item/melee/onehanded/knife/switchblade
 	name = "switchblade"
