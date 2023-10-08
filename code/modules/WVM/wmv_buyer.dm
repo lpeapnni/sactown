@@ -218,10 +218,6 @@ GLOBAL_LIST_EMPTY(wasteland_vendor_shop_list)
 		/obj/item/card/midbounty = 150,
 		/obj/item/card/highbounty = 250,
 		/obj/item/card/kingbounty = 500,
-		// Artifacts: Someone who actually playes needs to test these prices -Kelprunner
-		/obj/item/artifact/common = 150,
-		/obj/item/artifact/uncommon = 300,
-		/obj/item/artifact/rare = 500,
 	)
 	var/list/quicklisted = list()
 	var/is_grinding = FALSE
@@ -384,7 +380,7 @@ GLOBAL_LIST_EMPTY(wasteland_vendor_shop_list)
 	if(user?.a_intent == INTENT_HARM)
 		return ..()
 	appraise_item(I)
-	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, I, user)
+	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, I, user, FALSE)
 
 /obj/machinery/mineral/wasteland_trader/proc/appraise_item(obj/item/I, looping)
 	if(!I)

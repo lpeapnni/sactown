@@ -75,15 +75,6 @@ SUBSYSTEM_DEF(research)
 	/obj/item/scrap/research                       = list(TECHWEB_POINT_TYPE_GENERIC = 1000),
 	/obj/item/stock_parts/chem_cartridge/pristine  = list(TECHWEB_POINT_TYPE_GENERIC = 5000), 
 	/obj/item/assembly/signaler/anomaly            = list(TECHWEB_POINT_TYPE_GENERIC = 10000),
-	//   -   Artifacts!   (Placeholder)
-	/obj/item/artifact/common                      = list(TECHWEB_POINT_TYPE_GENERIC = 5000),
-	/obj/item/artifact/uncommon                    = list(TECHWEB_POINT_TYPE_GENERIC = 6000),
-	/obj/item/artifact/rare                        = list(TECHWEB_POINT_TYPE_GENERIC = 7500),
-	/obj/item/artifact/unique                      = list(TECHWEB_POINT_TYPE_GENERIC = 9000),
-	/obj/item/artifact/unique/apotheosis           = list(TECHWEB_POINT_TYPE_GENERIC = 10000),
-	/obj/item/artifact/unique/perfection           = list(TECHWEB_POINT_TYPE_GENERIC = 10000),
-	/obj/item/artifact/unique/penance              = list(TECHWEB_POINT_TYPE_GENERIC = 10000),
-	/obj/item/artifact/unique/bubble               = list(TECHWEB_POINT_TYPE_GENERIC = 10000),
 	//   -   Slime Extracts!   - Basics
 	/obj/item/slime_extract/grey                   = list(TECHWEB_POINT_TYPE_GENERIC = 500),
 	/obj/item/slime_extract/metal                  = list(TECHWEB_POINT_TYPE_GENERIC = 750),

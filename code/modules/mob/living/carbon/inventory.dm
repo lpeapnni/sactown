@@ -90,7 +90,7 @@
 			put_in_hands(I)
 			update_inv_hands()
 		if(SLOT_IN_BACKPACK)
-			if(!back || !SEND_SIGNAL(back, COMSIG_TRY_STORAGE_INSERT, I, src, TRUE, TRUE, I.loc, null))
+			if(!back || !SEND_SIGNAL(back, COMSIG_TRY_STORAGE_INSERT, I, src, TRUE))
 				not_handled = TRUE
 		else
 			not_handled = TRUE
