@@ -4519,9 +4519,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/stack/f13Cash/random/aureus,
-/obj/item/stack/f13Cash/random/aureus,
-/obj/item/stack/f13Cash/random/aureus,
 /turf/open/floor/f13{
 	icon_state = "darkredfull"
 	},
@@ -21018,20 +21015,6 @@
 /area/f13/bar/nash)
 "qZv" = (
 /obj/structure/rack/shelf_metal,
-/obj/item/stack/f13Cash/random/denarius/high,
-/obj/item/stack/f13Cash/random/denarius/high,
-/obj/item/stack/f13Cash/random/denarius/high,
-/obj/item/stack/f13Cash/random/denarius/high,
-/obj/item/stack/f13Cash/random/denarius/high,
-/obj/item/stack/f13Cash/random/denarius/high,
-/obj/item/stack/f13Cash/random/denarius/high,
-/obj/item/stack/f13Cash/random/denarius/high,
-/obj/item/stack/f13Cash/random/denarius/high,
-/obj/item/stack/f13Cash/random/denarius/high,
-/obj/item/stack/f13Cash/random/denarius/high,
-/obj/item/stack/f13Cash/random/denarius/high,
-/obj/item/stack/f13Cash/random/denarius/high,
-/obj/item/stack/f13Cash/random/denarius/high,
 /obj/machinery/cardpuncher{
 	pixel_y = 34;
 	density = 0
