@@ -1,5 +1,4 @@
 <!-- Most valid html will work in here, excluding images. -->
 
-<h1>Welcome to Coyote Bayou!</h1>
+<h1>Welcome to Sactown</h1>
 <br>
-Furry Fallout in east Texas, circa 2222!  Go gettem waster!<br>
