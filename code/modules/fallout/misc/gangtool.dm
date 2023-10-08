@@ -39,8 +39,6 @@
 	dat += "<b>Currency conversion rates:</b><br>"
 	dat += "1 Bottle cap = [CASH_CAP_GANG] influence <br>"
 	dat += "1 NCR dollar = [CASH_NCR_GANG] influence <br>"
-	dat += "1 Denarius = [CASH_DEN_GANG] influence <br>"
-	dat += "1 Aureus = [CASH_AUR_GANG] influence <br>"
 	dat += "</div>"
 	dat += "<br>"
 
@@ -95,16 +93,6 @@
 	if(istype(I, /obj/item/stack/f13Cash/ncr))
 		var/obj/item/stack/f13Cash/ncr/currency = I
 		inserted_value = currency.amount * CASH_NCR_GANG
-		gang.influence += inserted_value
-		I.use(currency.amount)
-	else if(istype(I, /obj/item/stack/f13Cash/denarius))
-		var/obj/item/stack/f13Cash/denarius/currency = I
-		inserted_value = currency.amount * CASH_DEN_GANG
-		gang.influence += inserted_value
-		I.use(currency.amount)
-	else if(istype(I, /obj/item/stack/f13Cash/aureus))
-		var/obj/item/stack/f13Cash/aureus/currency = I
-		inserted_value = currency.amount * CASH_AUR_GANG
 		gang.influence += inserted_value
 		I.use(currency.amount)
 	else if(istype(I, /obj/item/stack/f13Cash))

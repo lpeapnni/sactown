@@ -1354,7 +1354,6 @@
 	name = "trash money"
 	loot = list(
 		/obj/item/stack/f13Cash/random/low = 10,
-		/obj/item/stack/f13Cash/denarius = 1,
 		/obj/item/card/lowbounty = 1,
 	)
 
@@ -1362,7 +1361,6 @@
 	name = "common money"
 	loot = list(
 		/obj/item/stack/f13Cash/random/med = 10,
-		/obj/item/stack/f13Cash/denarius = 5,
 		/obj/item/card/midbounty = 1,
 	)
 
@@ -1370,8 +1368,6 @@
 	name = "uncommon money"
 	loot = list(
 		/obj/item/stack/f13Cash/random/med = 10,
-		/obj/item/stack/f13Cash/denarius = 3,
-		/obj/item/stack/f13Cash/aureus = 1,
 		/obj/item/card/highbounty = 1,
 	)
 
@@ -1379,8 +1375,6 @@
 	name = "rare money"
 	loot = list(
 		/obj/item/stack/f13Cash/random/high = 10,
-		/obj/item/stack/f13Cash/denarius = 1,
-		/obj/item/stack/f13Cash/aureus = 5,
 		/obj/item/card/kingbounty = 1,
 	)
 
