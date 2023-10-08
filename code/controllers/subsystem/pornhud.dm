@@ -143,9 +143,6 @@ SUBSYSTEM_DEF(pornhud)
 	/// ckeys with people we've already shown our genitals to
 	var/list/shown_to = list()
 
-	var/list/butt = list()
-	var/butt_visible
-
 	var/list/breasts = list()
 	var/breasts_visible
 
@@ -157,9 +154,6 @@ SUBSYSTEM_DEF(pornhud)
 
 	var/list/vag = list()
 	var/vag_visible
-
-	var/list/belly = list()
-	var/belly_visible
 
 	var/list/tail = list() // nice and suggestive
 	var/tail_visible
@@ -219,8 +213,6 @@ SUBSYSTEM_DEF(pornhud)
 			images = list(images)
 	var/list/images2change
 	switch(part)
-		if(PHUD_BUTT)
-			images2change = butt
 		if(PHUD_BOOB)
 			images2change = breasts
 		if(PHUD_PENIS)
@@ -229,8 +221,6 @@ SUBSYSTEM_DEF(pornhud)
 			images2change = balls
 		if(PHUD_VAG)
 			images2change = vag
-		if(PHUD_BELLY)
-			images2change = belly
 		if(PHUD_TAIL)
 			images2change = tail
 		if(PHUD_WINGS)
@@ -244,8 +234,6 @@ SUBSYSTEM_DEF(pornhud)
 	if(!LAZYLEN(images ^ images2change))
 		return // nothing changed
 	switch(part)
-		if(PHUD_BUTT)
-			butt = images
 		if(PHUD_BOOB)
 			breasts = images
 		if(PHUD_PENIS)
@@ -254,8 +242,6 @@ SUBSYSTEM_DEF(pornhud)
 			balls = images
 		if(PHUD_VAG)
 			vag = images
-		if(PHUD_BELLY)
-			belly = images
 		if(PHUD_TAIL)
 			tail = images
 		if(PHUD_WINGS)
@@ -270,10 +256,6 @@ SUBSYSTEM_DEF(pornhud)
 
 /datum/genital_images/proc/update_visibility(part, on_off)
 	switch(part)
-		if(PHUD_BUTT)
-			if(butt_visible == on_off)
-				return
-			butt_visible = on_off
 		if(PHUD_BOOB)
 			if(breasts_visible == on_off)
 				return
@@ -290,10 +272,6 @@ SUBSYSTEM_DEF(pornhud)
 			if(vag_visible == on_off)
 				return
 			vag_visible = on_off
-		if(PHUD_BELLY)
-			if(belly_visible == on_off)
-				return
-			belly_visible = on_off
 		if(PHUD_TAIL)
 			if(tail_visible == on_off)
 				return
@@ -356,9 +334,6 @@ SUBSYSTEM_DEF(pornhud)
 	var/preflag = is_whitelisted(P.parent.mob) ? NONE : P.features["genital_hide"]
 	for(var/entry in image_order)
 		switch(entry)
-			if(CS_BUTT)
-				if(butt_visible && !CHECK_BITFIELD(preflag, HIDE_BUTT))
-					all_images += butt
 			if(CS_BOOB)
 				if(breasts_visible && !CHECK_BITFIELD(preflag, HIDE_BOOBS))
 					all_images += breasts
@@ -371,9 +346,6 @@ SUBSYSTEM_DEF(pornhud)
 			if(CS_VAG)
 				if(vag_visible && !CHECK_BITFIELD(preflag, HIDE_VAG))
 					all_images += vag
-			if(CS_BELLY)
-				if(belly_visible && !CHECK_BITFIELD(preflag, HIDE_BELLY))
-					all_images += belly
 	if(tail && tail_visible)
 		all_images += tail
 	var/list/imgsformatted = list()
@@ -388,13 +360,11 @@ SUBSYSTEM_DEF(pornhud)
 	return imgsformatted
 
 /datum/genital_images/proc/flush_genitals()
-	var/changed = LAZYLEN(butt) || LAZYLEN(breasts) || LAZYLEN(peen) || LAZYLEN(balls) || LAZYLEN(vag) || LAZYLEN(belly)
-	butt = list()
+	var/changed = LAZYLEN(breasts) || LAZYLEN(peen) || LAZYLEN(balls) || LAZYLEN(vag)
 	breasts = list()
 	peen = list()
 	balls = list()
 	vag = list()
-	belly = list()
 	if(changed)
 		set_changed()
 	return TRUE

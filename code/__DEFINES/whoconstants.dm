@@ -1,0 +1,12 @@
+#define WHO_SHOWS_ME (1<<0)
+#define WHO_SHOWS_NAME (1<<1)
+#define WHO_SHOWS_ROLE (1<<2)
+#define WHO_SHOWS_POSE (1<<3)
+
+#define DEFAULT_WHO_FLAGS (WHO_SHOWS_ME | WHO_SHOWS_NAME | WHO_SHOWS_POSE)
+
+#define WHO_LOCKOUT_NAME (1<<0)
+#define WHO_LOCKOUT_ROLE (1<<1)
+#define WHO_LOCKOUT_POSE (1<<2)
+
+#define MAX_STATUS_LEN 86

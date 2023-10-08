@@ -32653,7 +32653,7 @@
 /turf/open/indestructible/ground/outside/desert,
 /area/f13/caves)
 "eXw" = (
-/obj/item/organ/genital/butt{
+/obj/item/organ/genital/penis{
 	force = 30;
 	icon_state = "the one true butt"
 	},

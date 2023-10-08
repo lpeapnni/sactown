@@ -131,20 +131,6 @@ SUBSYSTEM_DEF(who) // SS who? SS you!
 				SetName(ckey, "CLEAR-RESET-DESTROY")
 			if(do_what == "Toggle Ban")
 				WCS.ToggleLockout(WHO_LOCKOUT_NAME)
-		if("Role")
-			if(do_what == "Set")
-				SetRole(ckey)
-			if(do_what == "Clear")
-				SetRole(ckey, "CLEAR-RESET-DESTROY")
-			if(do_what == "Toggle Ban")
-				WCS.ToggleLockout(WHO_LOCKOUT_ROLE)
-		if("Where")
-			if(do_what == "Set")
-				SetWhere(ckey)
-			if(do_what == "Clear")
-				SetWhere(ckey, "CLEAR-RESET-DESTROY")
-			if(do_what == "Toggle Ban")
-				WCS.ToggleLockout(WHO_LOCKOUT_WHERE)
 		if("Pose")
 			if(do_what == "Set")
 				SetPose(ckey)
@@ -186,35 +172,12 @@ SUBSYSTEM_DEF(who) // SS who? SS you!
 
 ////////////////////////////////////////////////////////
 /// ROLE STUFF
-/datum/controller/subsystem/who/proc/SetRole(something, override)
-	var/ckey = extract_ckey(something)
-	var/datum/who_custom_stuff/WCS = GetCustomDatum(ckey)
-	if(!WCS)
-		return
-	WCS.SetRole(override)
-
 /datum/controller/subsystem/who/proc/GetRole(something)
 	var/ckey = extract_ckey(something)
 	var/datum/who_custom_stuff/WCS = GetCustomDatum(ckey)
 	if(!WCS)
 		return
 	return WCS.GetRole(check_rights(admin_level_to_see_all, FALSE))
-
-////////////////////////////////////////////////////////
-/// WHERE STUFF
-/datum/controller/subsystem/who/proc/SetWhere(something, override)
-	var/ckey = extract_ckey(something)
-	var/datum/who_custom_stuff/WCS = GetCustomDatum(ckey)
-	if(!WCS)
-		return
-	WCS.SetWhere(override)
-
-/datum/controller/subsystem/who/proc/GetWhere(something, override)
-	var/ckey = extract_ckey(something)
-	var/datum/who_custom_stuff/WCS = GetCustomDatum(ckey)
-	if(!WCS)
-		return
-	return WCS.GetWhere(check_rights(admin_level_to_see_all, FALSE))
 
 ////////////////////////////////////////////////////////
 /// POSE STUFF
@@ -365,9 +328,6 @@ SUBSYSTEM_DEF(who) // SS who? SS you!
 	var/role = GetRole(M)
 	var/role_span = "notice"
 	var/role_visible = (CHECK_BITFIELD(P.whoflags, WHO_SHOWS_ROLE) && CHECK_BITFIELD(P.whoflags, WHO_SHOWS_ME)) || admeme
-	var/where = GetWhere(M)
-	var/where_span = "purple"
-	var/where_visible = (CHECK_BITFIELD(P.whoflags, WHO_SHOWS_WHERE) && CHECK_BITFIELD(P.whoflags, WHO_SHOWS_ME)) || admeme
 	var/pose = GetPose(M, TRUE)
 	var/pose_visible = (CHECK_BITFIELD(P.whoflags, WHO_SHOWS_POSE) && CHECK_BITFIELD(P.whoflags, WHO_SHOWS_ME)) || admeme
 	var/M_is_admin = check_rights_for(M.client, admin_level_to_see_all) && !(M.client.holder in GLOB.deadmins)
@@ -388,13 +348,11 @@ SUBSYSTEM_DEF(who) // SS who? SS you!
 	if(!admeme)
 		if(role_visible)
 			out += " the <span class='[role_span]'>[role]</span>"
-		if(where_visible)
-			out += ", in <span class='[where_span]'>[where]</span>"
 		if(pose_visible && pose && trim(pose) != "")
 			out += "'[pose]'"
 		var/msgout = out.Join()
 		return msgout
-	out += "[FOURSPACES] <span class='[role_span]'>[role]</span> - <span class='[where_span]'>[where]</span>"
+	out += "[FOURSPACES] <span class='[role_span]'>[role]</span>"
 	out += "<br>[FOURSPACES]'[pose]'"
 	// var/second_line_visible = where_visible || pose_visible
 	// if(second_line_visible)
@@ -498,30 +456,18 @@ SUBSYSTEM_DEF(who) // SS who? SS you!
 	var/mob/M = whoer.mob
 	var/myname = GetName(M, TRUE)
 	var/myrole = GetRole(M, TRUE)
-	var/mywhere = GetWhere(M, TRUE)
 	var/mypose = GetPose(M, TRUE)
 	var/is_admin = check_rights_for(whoer, admin_level_to_see_all)
 	var/is_deadmined = whoer.holder && (whoer.holder in GLOB.deadmins)
-	var/fuzzy_x = round(M.x / coord_fuzziness) * coord_fuzziness
-	var/fuzzy_y = round(M.y / coord_fuzziness) * coord_fuzziness
 	var/datum/preferences/P = whoer.prefs
 	var/shows_name = CHECK_BITFIELD(P.whoflags, WHO_SHOWS_NAME)
 	var/shows_job = CHECK_BITFIELD(P.whoflags, WHO_SHOWS_ROLE)
-	var/shows_location = CHECK_BITFIELD(P.whoflags, WHO_SHOWS_WHERE)
-	var/shows_coords = CHECK_BITFIELD(P.whoflags, WHO_SHOWS_COORDS)
 	var/shows_pose = CHECK_BITFIELD(P.whoflags, WHO_SHOWS_POSE)
 	var/shows_who = CHECK_BITFIELD(P.whoflags, WHO_SHOWS_ME)
 	dat += "<hr>"
-	dat += span_green("You are <a href='?src=[REF(src)];[whoer.ckey]=SetCustomName'>[myname]</a> the <a href='?src=[REF(src)];[whoer.ckey]=SetCustomJob'>[myrole]</a>!<br>")
+	dat += span_green("You are <a href='?src=[REF(src)];[whoer.ckey]=SetCustomName'>[myname]</a> the [myrole]!<br>")
 	dat += span_notice("Your name is <a href='?src=[REF(src)];[whoer.ckey]=ToggleNameVis'>[shows_name ? "VISIBLE to" : "HIDDEN from"] others!</a><br>")
 	dat += span_notice("Your role is <a href='?src=[REF(src)];[whoer.ckey]=ToggleRoleVis'>[shows_job ? "VISIBLE to" : "HIDDEN from"] others!</a><br>")
-	if(show_coords)
-		dat += span_green("You are in [mywhere], within [fuzzy_x], [fuzzy_y] ±[coord_fuzziness]!<br>")
-	else
-		dat += span_green("You are somewhere in <a href='?src=[REF(src)];[whoer.ckey]=SetCustomLocation'>[mywhere]</a>!<br>")
-	dat += span_notice("Your current location is <a href='?src=[REF(src)];[whoer.ckey]=ToggleLocationVis'>[shows_location ? "VISIBLE to" : "HIDDEN from"] others!</a><br>")
-	if(show_coords)
-		dat += span_notice("Your current Coordinates are <a href='?src=[REF(src)];[whoer.ckey]=ToggleLocationCoordVis'>[shows_coords ? "VISIBLE to" : "HIDDEN from"] others!</a><br>")
 	dat += span_notice("Your OOC status is: '[mypose]' <a href='?src=[REF(src)];[whoer.ckey]=SetPose'>\[Change?\]</a><br>")
 	dat += span_notice("Your OOC status is <a href='?src=[REF(src)];[whoer.ckey]=TogglePoseVis'>[shows_pose ? "VISIBLE to" : "HIDDEN from"] others!</a><br>")
 	dat += span_brass("You are currently <a href='?src=[REF(src)];[whoer.ckey]=ToggleWhoVis'>[shows_who ? "VISIBLE" : "HIDDEN"] on the who list!</a><br>")
@@ -546,9 +492,6 @@ SUBSYSTEM_DEF(who) // SS who? SS you!
 	var/datum/preferences/P = extract_prefs(ckey)
 	var/mob/M = ckey2mob(ckey)
 	switch(href_list["[ckey]"])
-		if("ToggleLocationVis")
-			TOGGLE_BITFIELD(P.whoflags, WHO_SHOWS_WHERE)
-			to_chat(P.parent, span_green("Your location is now [CHECK_BITFIELD(P.whoflags, WHO_SHOWS_WHERE) ? "VISIBLE" : "HIDDEN"] to others!"))
 		if("ToggleWhoVis")
 			TOGGLE_BITFIELD(P.whoflags, WHO_SHOWS_ME)
 			to_chat(P.parent, span_green("You are now [CHECK_BITFIELD(P.whoflags, WHO_SHOWS_ME) ? "VISIBLE" : "HIDDEN"] to others!"))
@@ -558,9 +501,6 @@ SUBSYSTEM_DEF(who) // SS who? SS you!
 		if("ToggleRoleVis")
 			TOGGLE_BITFIELD(P.whoflags, WHO_SHOWS_ROLE)
 			to_chat(P.parent, span_green("Your role is now [CHECK_BITFIELD(P.whoflags, WHO_SHOWS_ROLE) ? "VISIBLE" : "HIDDEN"] to others!"))
-		if("ToggleLocationCoordVis")
-			TOGGLE_BITFIELD(P.whoflags, WHO_SHOWS_COORDS)
-			to_chat(P.parent, span_green("Your coordinates are now [CHECK_BITFIELD(P.whoflags, WHO_SHOWS_COORDS) ? "VISIBLE" : "HIDDEN"] to others!"))
 		if("TogglePoseVis")
 			TOGGLE_BITFIELD(P.whoflags, WHO_SHOWS_POSE)
 			to_chat(P.parent, span_green("Your OOC status is now [CHECK_BITFIELD(P.whoflags, WHO_SHOWS_POSE) ? "VISIBLE" : "HIDDEN"] to others!"))	
@@ -568,10 +508,6 @@ SUBSYSTEM_DEF(who) // SS who? SS you!
 			SetPose(M)
 		if("SetCustomName")
 			SetName(M)
-		if("SetCustomJob")
-			SetRole(M)
-		if("SetCustomLocation")
-			SetWhere(M)
 	save_queue[ckey] = 2
 
 /obj/effect/hint/region_floodfill_ignore
@@ -755,8 +691,6 @@ SUBSYSTEM_DEF(who) // SS who? SS you!
 /datum/who_custom_stuff
 	var/ckey
 	var/c_name
-	var/c_role
-	var/c_where
 	var/c_pose
 
 /datum/who_custom_stuff/New(c_key)
@@ -830,12 +764,10 @@ SUBSYSTEM_DEF(who) // SS who? SS you!
 /datum/who_custom_stuff/proc/GetRole(reveal_always)
 	var/datum/preferences/P = extract_prefs(ckey)
 	if(IsAdmin())
-		return "[TrueJob()][isnull(c_role) ? "" : " as [c_role]"]"
+		return "[TrueJob()]"
 	var/job_vis = CHECK_BITFIELD(P.whoflags, WHO_SHOWS_ROLE) && CHECK_BITFIELD(P.whoflags, WHO_SHOWS_ME)
 	if(!job_vis && !reveal_always)
 		return ""
-	if(!isnull(c_role))
-		return "[c_role]"
 	return "[TrueJob()]"
 
 /datum/who_custom_stuff/proc/TrueJob()
@@ -847,18 +779,6 @@ SUBSYSTEM_DEF(who) // SS who? SS you!
 	if(!LAZYLEN(M.mind.assigned_role))
 		return "mysterious stranger"
 	return "[M.mind.assigned_role]"	
-
-/datum/who_custom_stuff/proc/GetWhere(reveal_always)
-	var/datum/preferences/P = extract_prefs(ckey)
-	var/mob/M = GetMyMob()
-	if(IsAdmin())
-		return "[SSwho.WhereAmI(M)][isnull(c_where) ? "" : " - [c_where]"]"
-	var/loc_vis = CHECK_BITFIELD(P.whoflags, WHO_SHOWS_WHERE) && CHECK_BITFIELD(P.whoflags, WHO_SHOWS_ME)
-	if(!loc_vis && !reveal_always)
-		return "parts unknown"
-	if(!isnull(c_where))
-		return "[c_where]."
-	return "[SSwho.WhereAmI(M)]"
 
 /datum/who_custom_stuff/proc/GetPose(reveal_always, parse)
 	var/datum/preferences/P = extract_prefs(ckey)
@@ -886,42 +806,6 @@ SUBSYSTEM_DEF(who) // SS who? SS you!
 		DispenseInfo(defaultname, newname, "name")
 	else
 		DispenseInfo(defaultname, newname, "name", TRUE)
-
-/datum/who_custom_stuff/proc/SetRole(clear)
-	var/mob/M = GetMyMob()
-	if(LockedOut(WHO_LOCKOUT_ROLE))
-		c_role = null
-		to_chat(M, span_alert("You've been locked out from changing your custom role! :c"))
-		return
-	var/defaultrole = GetRole(TRUE)
-	if(clear)
-		c_role = null
-		DispenseInfo(defaultrole, TrueJob(), "role", TRUE)
-		return
-	var/newrole = stripped_input(usr, "Set the custom Who role! (Char Limit: [MAX_STATUS_LEN])", "Custom Role", "[defaultrole]", max_length=MAX_STATUS_LEN)
-	c_role = newrole
-	if(trim(newrole) != "" && !isnull(c_role))
-		DispenseInfo(defaultrole, newrole, "role")
-	else
-		DispenseInfo(defaultrole, newrole, "role", TRUE)
-
-/datum/who_custom_stuff/proc/SetWhere(clear)
-	var/mob/M = GetMyMob()
-	if(LockedOut(WHO_LOCKOUT_WHERE))
-		c_where = null
-		to_chat(M, span_alert("You've been locked out from changing your custom location! :c"))
-		return
-	var/defaultwhere = GetWhere(TRUE)
-	if(clear)
-		c_where = null
-		DispenseInfo(defaultwhere, SSwho.WhereAmI(M), "location", TRUE)
-		return
-	var/newwhere = stripped_input(usr, "Set the custom Who location! (Char Limit: [MAX_STATUS_LEN])", "Custom Location", "[defaultwhere]", max_length=MAX_STATUS_LEN)
-	c_where = newwhere
-	if(trim(newwhere) != "" && !isnull(c_where))
-		DispenseInfo(defaultwhere, newwhere, "location")
-	else
-		DispenseInfo(defaultwhere, newwhere, "location", TRUE)
 
 /datum/who_custom_stuff/proc/SetPose(clear)
 	var/mob/M = GetMyMob()
@@ -954,12 +838,6 @@ SUBSYSTEM_DEF(who) // SS who? SS you!
 	TOGGLE_BITFIELD(P.whoflags, WHO_SHOWS_ROLE)
 	to_chat(M, "Your role is now [CHECK_BITFIELD(P.whoflags, WHO_SHOWS_ROLE) ? "VISIBLE" : "HIDDEN"] to others!")
 
-/datum/who_custom_stuff/proc/ToggleLocationVis()
-	var/mob/M = GetMyMob()
-	var/datum/preferences/P = extract_prefs(ckey)
-	TOGGLE_BITFIELD(P.whoflags, WHO_SHOWS_WHERE)
-	to_chat(M, "Your location is now [CHECK_BITFIELD(P.whoflags, WHO_SHOWS_WHERE) ? "VISIBLE" : "HIDDEN"] to others!")
-
 /datum/who_custom_stuff/proc/TogglePoseVis()
 	var/mob/M = GetMyMob()
 	var/datum/preferences/P = extract_prefs(ckey)
@@ -982,9 +860,6 @@ SUBSYSTEM_DEF(who) // SS who? SS you!
 		if("Role")
 			was_on = CHECK_BITFIELD(P.lockouts, WHO_LOCKOUT_ROLE)
 			TOGGLE_BITFIELD(P.lockouts, WHO_LOCKOUT_ROLE)
-		if("Location")
-			was_on = CHECK_BITFIELD(P.lockouts, WHO_LOCKOUT_WHERE)
-			TOGGLE_BITFIELD(P.lockouts, WHO_LOCKOUT_WHERE)
 		if("Pose")
 			was_on = CHECK_BITFIELD(P.lockouts, WHO_LOCKOUT_POSE)
 			TOGGLE_BITFIELD(P.lockouts, WHO_LOCKOUT_POSE)

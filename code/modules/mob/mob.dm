@@ -89,14 +89,11 @@ GLOBAL_VAR_INIT(pixel_slide_other_has_help_int, 0)  //This variable queries whet
 /mob/proc/get_photo_description(obj/item/camera/camera)
 	return "a ... thing?"
 
-/mob/proc/show_message(msg, type, alt_msg, alt_type, pref_check)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+/mob/proc/show_message(msg, type, alt_msg, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 	if(audiovisual_redirect)
 		audiovisual_redirect.show_message(msg ? "<avredirspan class='small'>[msg]</avredirspan>" : null, type, alt_msg ? "<avredirspan class='small'>[alt_msg]</avredirspan>" : null, alt_type)
 
 	if(!client)
-		return
-	
-	if(pref_check && !CHECK_PREFS(src, pref_check))
 		return
 
 	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
@@ -151,8 +148,7 @@ GLOBAL_VAR_INIT(pixel_slide_other_has_help_int, 0)  //This variable queries whet
 		ignored_mobs,
 		mob/target,
 		target_message,
-		visible_message_flags = NONE,
-		pref_check
+		visible_message_flags = NONE
 		)
 	var/turf/T = get_turf(src)
 	if(!T)
@@ -184,8 +180,6 @@ GLOBAL_VAR_INIT(pixel_slide_other_has_help_int, 0)  //This variable queries whet
 
 	for(var/mob/M in hearers)
 		if(!M.client)
-			continue
-		if(pref_check && !CHECK_PREFS(M, pref_check))
 			continue
 		//This entire if/else chain could be in two lines but isn't for readabilty's sake.
 		var/blind = M.is_blind()
@@ -224,8 +218,7 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 		hearing_distance = DEFAULT_MESSAGE_RANGE,
 		self_message,
 		ignored_mobs,
-		audible_message_flags = NONE,
-		pref_check
+		audible_message_flags = NONE
 		)
 	var/turf/T = get_turf(src)
 	if(!T)
@@ -243,8 +236,6 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 	//if(audible_message_flags & EMOTE_MESSAGE)
 	//	message = "<span class='emote'><b>[src]</b> [message]</span>"
 	for(var/mob/M in hearers)
-		if(pref_check && !CHECK_PREFS(M, pref_check))
-			continue
 		var/msg = M.can_hear() ? message : deaf_message
 		if(audible_message_flags & EMOTE_MESSAGE && runechat_prefs_check(M, audible_message_flags))
 			M.create_chat_message(src, raw_message = msg, runechat_flags = audible_message_flags)

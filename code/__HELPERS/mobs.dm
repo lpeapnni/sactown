@@ -84,10 +84,6 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/vagina, GLOB.vagina_shapes_list)
 	if(!GLOB.breasts_shapes_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/breasts, GLOB.breasts_shapes_list)
-	if(!GLOB.butt_shapes_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/butt, GLOB.butt_shapes_list)
-	if(!GLOB.belly_shapes_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/belly, GLOB.belly_shapes_list)
 	if(!GLOB.ipc_screens_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/screen, GLOB.ipc_screens_list)
 	if(!GLOB.ipc_antennas_list.len)
@@ -184,12 +180,6 @@
 		"cock_diameter_ratio"	= COCK_DIAMETER_RATIO_DEF,
 		"cock_color"		= pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
 		"cock_taur"			= FALSE,
-		"has_butt"			= FALSE,
-		"butt_color"		= "ffffff",
-		"butt_size" 		= BUTT_SIZE_DEF,
-		"belly_color"		= "ffffff",
-		"belly_size" 		= BELLY_SIZE_DEF,
-		"belly_shape" 		= DEF_BELLY_SHAPE,
 		"has_balls" 		= FALSE,
 		"balls_color" 		= pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
 		"balls_size"		= BALLS_SIZE_DEF,
@@ -215,8 +205,6 @@
 		"breasts_visibility_flags"= GEN_VIS_FLAG_DEFAULT,
 		"cock_visibility_flags" = GEN_VIS_FLAG_DEFAULT,
 		"vag_visibility_flags" = GEN_VIS_FLAG_DEFAULT,
-		"butt_visibility_flags" = GEN_VIS_FLAG_DEFAULT,
-		"belly_visibility_flags" = GEN_VIS_FLAG_DEFAULT,
 		"genital_visibility_flags" = GEN_VIS_OVERALL_FLAG_DEFAULT,
 		"ipc_screen"		= snowflake_ipc_antenna_list ? pick(snowflake_ipc_antenna_list) : "None",
 		"ipc_antenna"		= "None",

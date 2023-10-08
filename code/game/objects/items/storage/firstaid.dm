@@ -412,15 +412,6 @@
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/breast_enlarger(src)
 
-/obj/item/storage/pill_bottle/butt_enlarger
-	name = "bottle of callipygian capsules"
-	desc = "Ever wish you had a bit more cushion for the pushin'? Not any more with Doctor D-Zels' patented callipygian capsules! \
-		Lab tested on some of the happiest wasters around, these are guarenteed to give you a rear worth talking about. \
-		Works on any organic lifeform. D-Zel is not responsible for any loss of mobility, pregnancy, exhaustion, dehydration, or bruising caused by use of this product."
-/obj/item/storage/pill_bottle/butt_enlarger/PopulateContents()
-	for(var/i in 1 to 7)
-		new /obj/item/reagent_containers/pill/butt_enlarger(src)
-
 /obj/item/storage/pill_bottle/penis_enlarger
 	name = "bottle of male enhancement pills"
 	desc = "Ever wish your iron was a Big Iron? Get made fun of for being out-gunned in the sack? Not anymore with Doctor D-Zels' big blue pills! \
@@ -429,14 +420,6 @@
 /obj/item/storage/pill_bottle/penis_enlarger/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/penis_enhancement(src)
-
-/obj/item/storage/pill_bottle/belly_enlarger
-	name = "bottle of weight gain pills"
-	desc = "Feeling a bit underweight? Famines got you down? Or maybe you just want that healthy wobble people adore in the wasteland? \
-		---*-/ has got your back! With targeted weight enhancement you'll be bulked up in no time!"
-/obj/item/storage/pill_bottle/belly_enlarger/PopulateContents()
-	for(var/i in 1 to 7)
-		new /obj/item/reagent_containers/pill/belly_enlarger(src)
 
 /obj/item/storage/pill_bottle/random
 	name = "bottle of randomized pills"

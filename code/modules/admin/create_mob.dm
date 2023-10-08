@@ -118,27 +118,6 @@
 		var/static/penis_inches_max
 		if(!penis_inches_max)
 			penis_inches_max = CONFIG_GET(number/penis_max_inches_prefs)
-		var/static/butt_size_min
-		if(!butt_size_min)
-			butt_size_min = CONFIG_GET(number/butt_min_size_prefs)
-		var/static/butt_size_max
-		if(!butt_size_max)
-			butt_size_max = CONFIG_GET(number/butt_max_size_prefs)
-		var/static/belly_size_min
-		if(!belly_size_min)
-			belly_size_min = CONFIG_GET(number/belly_min_size_prefs)
-		var/static/belly_size_max
-		if(!belly_size_max)
-			belly_size_max = CONFIG_GET(number/belly_max_size_prefs)
-		if(prob(50))
-			H.dna.features["has_butt"] = TRUE
-			H.dna.features["butt_color"] = H.dna.features["mcolor"]
-			H.dna.features["butt_size"] = GaussianRangePicker(butt_size_min, butt_size_max, 4, 3)
-			if(prob(80))
-				H.dna.features["has_belly"] = TRUE
-				H.dna.features["belly_color"] = H.dna.features["mcolor"]
-				H.dna.features["belly_size"] = GaussianRangePicker(belly_size_min, belly_size_max, 4, 3)
-				H.dna.features["belly_shape"] = pick(GLOB.belly_shapes_list)
 		if(H.gender == FEMALE || H.gender == NEUTER || H.gender == PLURAL || prob(10))
 			H.dna.features["has_vag"] = TRUE // they only get the normal vag cus the rest are scary D:
 			H.dna.features["vag_color"] = H.dna.features["mcolor"]

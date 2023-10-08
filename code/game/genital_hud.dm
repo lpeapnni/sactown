@@ -63,16 +63,12 @@
 	/// okay, no more exceptions...
 	. = order.Copy()
 	var/hideflags = clint.prefs.features["genital_hide"]
-	if(CHECK_BITFIELD(hideflags, HIDE_BUTT))
-		. -= CS_BUTT
 	if(CHECK_BITFIELD(hideflags, HIDE_VAG))
 		. -= CS_VAG
 	if(CHECK_BITFIELD(hideflags, HIDE_BALLS))
 		. -= CS_BALLS
 	if(CHECK_BITFIELD(hideflags, HIDE_PENIS))
 		. -= CS_PENIS
-	if(CHECK_BITFIELD(hideflags, HIDE_BELLY))
-		. -= CS_BELLY
 	if(CHECK_BITFIELD(hideflags, HIDE_BOOBS))
 		. -= CS_BOOB
 

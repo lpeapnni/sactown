@@ -515,42 +515,6 @@
 	for(var/i in 1 to 7)
 		new /obj/item/storage/pill_bottle/breast_enlarger(src)
 
-/datum/gear/donator/kits/fuzlet
-	name = "fuzzy supply box"
-	path = /obj/item/storage/box/large/custom_kit/fuzlet
-	ckeywhitelist = list("fuzlet", "superlagg")
-
-/obj/item/storage/box/large/custom_kit/fuzlet/PopulateContents()
-	new /obj/item/card/fuzzy_license(src)
-	new /obj/item/geiger_counter(src)
-	new /obj/item/toy/plush/mammal/fox/fuzzy(src)
-	new /obj/item/stack/marker_beacon/thirty(src)
-	new /obj/item/gun/ballistic/automatic/pistol/ninemil/ruby(src)
-	new /obj/item/ammo_box/magazine/m9mm(src)
-	new /obj/item/ammo_box/c9mm(src)
-	new /obj/item/gun/ballistic/revolver/shotpistol(src)
-	new /obj/item/ammo_box/shotgun/buck(src)
-	new /obj/item/melee/onehanded/knife/switchblade(src)
-	new /obj/item/storage/survivalkit/combat/empty(src)
-
-/datum/gear/donator/kits/fuzlet2
-	name = "Scavfox Kit"
-	path = /obj/item/storage/box/large/custom_kit/fuzlet2
-	ckeywhitelist = list("fuzlet")
-
-/obj/item/storage/box/large/custom_kit/fuzlet2/PopulateContents()
-	new /obj/item/gun_upgrade/trigger/raidertrigger(src)
-	new /obj/item/storage/survivalkit/triple(src)
-	new /obj/item/storage/bag/trash/sack(src)
-
-/datum/gear/donator/kits/fuzlet3
-	name = "Snowfox Kit"
-	path = /obj/item/storage/box/large/custom_kit/fuzlet3
-	ckeywhitelist = list("fuzlet")
-
-/obj/item/storage/box/large/custom_kit/fuzlet3/PopulateContents()
-	new /obj/item/dnainjector/geladikinesis(src)
-
 // G
 
 /datum/gear/donator/kits/generalpantsu

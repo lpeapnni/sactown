@@ -10,28 +10,24 @@
 #define CIT_FILTER_STAMINACRIT filter(type="drop_shadow", x=0, y=0, size=-3, color="#04080F")
 
 //organ defines
-#define BUTT_LAYER_INDEX		1
-#define VAGINA_LAYER_INDEX		2
-#define TESTICLES_LAYER_INDEX	3
-#define GENITAL_LAYER_INDEX		4
-#define PENIS_LAYER_INDEX		5
-#define BELLY_LAYER_INDEX		6
-#define BREAST_LAYER_INDEX		7
+#define VAGINA_LAYER_INDEX		1
+#define TESTICLES_LAYER_INDEX	2
+#define GENITAL_LAYER_INDEX		3
+#define PENIS_LAYER_INDEX		4
+#define BREAST_LAYER_INDEX		5
 
-#define GENITAL_LAYER_INDEX_LENGTH 7 //keep it updated with each new index added, thanks.
+#define GENITAL_LAYER_INDEX_LENGTH 5 //keep it updated with each new index added, thanks.
 
 //cockstring defines
-#define CS_BUTT "has_butt"
 #define CS_VAG "has_vag"
 #define CS_BALLS "has_balls"
 #define CS_WOMB "has_womb"
 #define CS_MISC "idk"
 #define CS_PENIS "has_cock"
-#define CS_BELLY "has_belly"
 #define CS_BOOB "has_breasts"
 
 //encodes the layering order -- ONLY WORKS FOR VISIBLE GENITALS!!! so keep womb out pls
-#define DEF_COCKSTRING "has_butt:has_vag:has_balls:has_cock:has_belly:has_breasts"
+#define DEF_COCKSTRING "has_vag:has_balls:has_cock:has_breasts"
 
 //genital flags
 #define GENITAL_BLACKLISTED      (1<<0) //for genitals that shouldn't be added to GLOB.genitals_list.
@@ -49,13 +45,11 @@
 #define GENITAL_CAN_HAVE         (1<<12)
 
 //DEfault genital flags, for preferences
-#define DEF_BUTT_FLAGS GENITAL_CAN_RECOLOR | GENITAL_CAN_RESIZE | GENITAL_CAN_HAVE
 #define DEF_VAG_FLAGS GENITAL_CAN_RECOLOR | GENITAL_CAN_RESHAPE | GENITAL_CAN_HAVE
 #define DEF_WOMB_FLAGS GENITAL_CAN_HAVE
 #define DEF_BALLS_FLAGS GENITAL_CAN_RECOLOR | GENITAL_CAN_RESHAPE | GENITAL_CAN_HAVE | GENITAL_CAN_RESIZE
 #define DEF_PENIS_FLAGS GENITAL_CAN_RECOLOR | GENITAL_CAN_RESHAPE | GENITAL_CAN_RESIZE | GENITAL_CAN_HAVE
 #define DEF_BREASTS_FLAGS GENITAL_CAN_RECOLOR | GENITAL_CAN_RESHAPE | GENITAL_CAN_RESIZE | GENITAL_CAN_HAVE
-#define DEF_BELLY_FLAGS GENITAL_CAN_RECOLOR | GENITAL_CAN_RESHAPE | GENITAL_CAN_RESIZE | GENITAL_CAN_HAVE
 
 //NEW genital flags
 #define GENITAL_NO_OVERRIDE       (1<<0) // Not actually used, passed to the visibility toggle to unset the lower two
@@ -75,13 +69,11 @@
 #define IS_GENITAL_VIS_OVERRIDE(x) (CHECK_BITFIELD(x,GENITAL_NO_OVERRIDE) || CHECK_BITFIELD(x,GENITAL_ALWAYS_HIDDEN) || CHECK_BITFIELD(x,GENITAL_ALWAYS_VISIBLE))
 
 //genital dislike flags
-#define HIDE_BUTT	(1<<0)
-#define HIDE_VAG	(1<<1)
-#define HIDE_BALLS	(1<<2)
-#define HIDE_PENIS	(1<<3)
-#define HIDE_BELLY	(1<<4)
-#define HIDE_BOOBS	(1<<5)
-#define HIDE_MISC	(1<<6)
+#define HIDE_VAG	(1<<0)
+#define HIDE_BALLS	(1<<1)
+#define HIDE_PENIS	(1<<2)
+#define HIDE_BOOBS	(1<<3)
+#define HIDE_MISC	(1<<4)
 
 #define DEF_VAGINA_SHAPE	"Human"
 
@@ -116,19 +108,6 @@
 #define MILK_RATE			3
 #define MILK_RATE_MULT		1
 #define MILK_EFFICIENCY		1
-
-#define DEF_BUTT_SHAPE		"Pair"
-#define BUTT_SIZE_DEF		1
-#define BUTT_SIZE_MIN		1
-#define BUTT_SIZE_MAX		8  //butt genitals are special in that they have caps. if there's the event there's even bigger butt sprites, raise this number.
-
-#define DEF_BELLY_SHAPE	"Tummy"
-#define BELLY_SHAPE_TUMMY "Tummy" // cute lil round belly
-#define BELLY_SHAPE_OBESE "Obese" // blubbery fatass landwhale
-#define BELLY_SHAPE_UDDERS "Udders" // haha, udders
-#define BELLY_SIZE_DEF 1
-#define BELLY_SIZE_MIN 1
-#define BELLY_SIZE_MAX 11 // our bellies go up to 11~
 
 //visibility toggles defines to avoid errors typos code errors.
 #define GEN_VISIBLE_ALWAYS "Always exposed"
@@ -169,9 +148,6 @@
 #define BIMBOFICATION		(1<<11)
 #define NO_AUTO_WAG			(1<<12)
 #define GENITAL_EXAMINE		(1<<13)
-//#define VOREALLOW_SEEING_BELLY_DESC		(1<<14)
-#define BUTT_ENLARGEMENT	(1<<15) // the butt is in the rear lol
-#define BELLY_ENLARGEMENT	(1<<16) // nope the belly is bro
 #define TOGGLES_CITADEL 0
 
 //icon states for the default eyes and for a state for no eye
@@ -200,21 +176,15 @@
 #define GENITAL_VIS_OVERRIDE_SET "cock_visibility_override",\
 	"balls_visibility_override",\
 	"vag_visibility_override",\
-	"breasts_visibility_override",\
-	"belly_visibility_override",\
-	"butt_visibility_override"
+	"breasts_visibility_override"
 #define GENITAL_VIS_FLAGS_SET "cock_visibility_flags",\
 	"balls_visibility_flags",\
 	"vag_visibility_flags",\
-	"breasts_visibility_flags",\
-	"belly_visibility_flags",\
-	"butt_visibility_flags"
+	"breasts_visibility_flags"
 #define GENITAL_VIS_FLAGS_LIST list("cock_visibility_flags",\
 	"balls_visibility_flags",\
 	"vag_visibility_flags",\
-	"breasts_visibility_flags",\
-	"belly_visibility_flags",\
-	"butt_visibility_flags")
+	"breasts_visibility_flags")
 #define GENITAL_VIS_FLAG_LIST list("Always Visible" = GENITAL_ALWAYS_VISIBLE, "Always Hidden" = GENITAL_ALWAYS_HIDDEN, "Check Coverage" = 0)
 #define GENITAL_VIS_FLAG_LIST_CARBON list("Always Visible" = GENITAL_ALWAYS_VISIBLE, "Always Hidden" = GENITAL_ALWAYS_HIDDEN, "Check Coverage" = GENITAL_NO_OVERRIDE)
 #define GENITAL_CLOTHING_FLAG_LIST list("Over Clothing" = GENITAL_ABOVE_CLOTHING, "Over Underwear" = GENITAL_ABOVE_UNDERWEAR, "Under Underwear" = 0)
@@ -223,16 +193,12 @@
 	"cock_visibility_override" = "cock_visibility_flags",\
 	"balls_visibility_override" = "balls_visibility_flags",\
 	"vag_visibility_override" = "vag_visibility_flags",\
-	"breasts_visibility_override" = "breasts_visibility_flags",\
-	"belly_visibility_override" = "belly_visibility_flags",\
-	"butt_visibility_override" = "butt_visibility_flags")
+	"breasts_visibility_override" = "breasts_visibility_flags")
 
 GLOBAL_LIST_INIT(hasgenital2genital, list(
-	"has_butt" = "Butt",
 	"has_vag" = "Vagina",
 	"has_balls" = "Testicles",
 	"has_cock" = "Penis",
-	"has_belly" = "Belly",
 	"has_womb" = "Womb",
 	"has_breasts" = "Breasts"))
 
@@ -243,7 +209,6 @@ GLOBAL_LIST_INIT(hasgenital2genital, list(
 	"has_womb",\
 	"has_cock",\
 	"has_balls",\
-	"has_breasts",\
-	"has_butt",\
-	"has_belly"
+	"has_breasts"
+
 #define PREFS_ALL_HAS_GENITALS list(PREFS_ALL_HAS_GENITALS_SET)

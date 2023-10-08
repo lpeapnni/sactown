@@ -264,25 +264,9 @@
 	value = 0
 	category = "Bawdy Quirks"
 	mechanics = "Your ass bites back, doing damage to any who dare to slap your glorious behind."
-	conflicts = list(
-		/datum/quirk/butter_ass,
-	)
 	mob_trait = TRAIT_STEEL_ASS
 	gain_text = "<span class='notice'>Your ass rivals those of golems.</span>"
 	lose_text = "<span class='notice'>Your butt feels more squishy and slappable.</span>"
-
-/datum/quirk/butter_ass
-	name = "Buns of Thunder"
-	desc = "That pants-stretching, seat-creaking, undie-devouring ass of yours is as satisfying to smack as it is difficult to keep balanced!"
-	value = 0
-	category = "Bawdy Quirks"
-	mechanics = "Any time someone smacks your pillowy butt, its jiggling will make moving hard for a few moments! But, it'll satisfy whoever smacked it!"
-	conflicts = list(
-		/datum/quirk/steel_ass,
-	)
-	mob_trait = TRAIT_JIGGLY_ASS
-	gain_text = "<span class='notice'>The ass is fat.</span>"
-	lose_text = "<span class='notice'>The ass was fat.</span>"
 
 /datum/quirk/headpat_hater
 	name = "Distant"

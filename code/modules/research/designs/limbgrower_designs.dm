@@ -138,14 +138,6 @@
 	build_path = /obj/item/organ/genital/breasts
 	category = list("initial","genitals")
 
-/datum/design/butt
-	name = "Butt"
-	id = "butt"
-	build_type = LIMBGROWER
-	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
-	build_path = /obj/item/organ/genital/butt
-	category = list("initial","genitals")
-
 /datum/design/penis
 	name = "Penis"
 	id = "penis"

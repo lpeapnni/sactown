@@ -419,9 +419,6 @@
 	var/magic_word
 	var/obj/item/organ/genital/the_nad
 	switch(has_name)
-		if(CS_BUTT)
-			magic_word = "Butt"
-			the_nad = has_butt()
 		if(CS_VAG)
 			magic_word = "Vagina"
 			the_nad = has_vagina()
@@ -431,9 +428,6 @@
 		if(CS_PENIS)
 			magic_word = "Penis"
 			the_nad = has_penis()
-		if(CS_BELLY)
-			magic_word = "Belly"
-			the_nad = has_belly()
 		if(CS_BOOB)
 			magic_word = "Breasts"
 			the_nad = has_breasts()
