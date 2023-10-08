@@ -18,10 +18,6 @@
 	var/list/possible_shapes = list(/mob/living/simple_animal/mouse)
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/Initialize()
-	var/list/poke = list()
-	for(var/pkmn in GLOB.creature_selectable)
-		poke += GLOB.creature_selectable[pkmn]
-	possible_shapes = poke
 	. = ..()
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/cast(list/targets,mob/user = usr)

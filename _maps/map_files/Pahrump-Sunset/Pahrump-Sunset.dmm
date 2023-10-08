@@ -71925,10 +71925,6 @@
 /turf/open/indestructible/ground/outside/dirthole,
 /area/f13/wasteland/massfusion/entrance)
 "mQL" = (
-/mob/living/simple_animal/raccoon{
-	name = "Lil' Biter";
-	desc = "A rough and tumble little shitter, he smells like old bay and cheap cigarettes."
-	},
 /obj/effect/turf_decal/weather/dirt{
 	dir = 4
 	},

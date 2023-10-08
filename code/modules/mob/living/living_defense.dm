@@ -359,11 +359,11 @@
 	if(!M.CheckActionCooldown(CLICK_CD_MELEE))
 		return
 	M.DelayNextAction()
-	if(M.ckey && stat && ckey && !(M.player_character)) // if both you and your attacker have ckeys, and you're not awake, disallow further attacks
+	if(M.ckey && stat && ckey) // if both you and your attacker have ckeys, and you're not awake, disallow further attacks
 		M.show_message(span_alert("As an honorable creature of the wastes, you're morally (and mechanically) forbidden from attacking [src] while they're too injured or too sleepy to fight back!"))
 		return FALSE
 	var/list/attack_phrases = list()
-	if(M.melee_damage_upper == 0 || (M.player_character && M.a_intent == INTENT_HELP))
+	if(M.melee_damage_upper == 0 || (M.a_intent == INTENT_HELP))
 		attack_phrases = list(
 		"continuous" = islist(M.friendly_verb_continuous) ? pick(M.friendly_verb_continuous) : M.friendly_verb_continuous,
 		"simple" = islist(M.friendly_verb_simple) ? pick(M.friendly_verb_simple) : M.friendly_verb_simple
