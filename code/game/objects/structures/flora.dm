@@ -543,3 +543,51 @@
 	icon_state = "pondlily_big"
 	desc = "A large lily pad with a single purple lily flower in full bloom that rests in the middle."
 	layer = WALL_OBJ_LAYER //fortuna edit
+
+// tgmc/mojave sun shit
+
+/obj/structure/flora/adobe
+	icon = 'icons/fallout/flora/desert_flora.dmi'
+	var/icon_variants = 0
+
+/obj/structure/flora/adobe/Initialize()
+	. = ..()
+	if(icon_variants)
+		icon_state = "[initial(icon_state)]_[rand(1, icon_variants)]"
+
+/obj/structure/flora/adobe/grass
+	name = "grass"
+	desc = "Some dried up grass."
+	icon_state = "drygrass"
+	icon_variants = 15
+
+/obj/structure/flora/adobe/tall_cactus
+	name = "cactus"
+	desc = "Some tall, spikey looking cactus."
+	icon_state = "tall_cactus"
+	icon_variants = 3
+	density = TRUE
+
+/obj/structure/flora/adobe/short_cactus
+	name = "cactus"
+	desc = "Some short, spikey looking cactus."
+	icon_state = "short_cactus"
+	icon_variants = 3
+
+/obj/structure/flora/adobe/barrel_cactus
+	name = "cactus"
+	desc = "Some plump, spikey looking cactus."
+	icon_state = "barrel"
+	icon_variants = 6
+
+/obj/structure/flora/adobe/leafy_plant
+	name = "plant"
+	desc = "A tough looking little plant."
+	icon_state = "leafy_plant"
+	icon_variants = 3
+
+/obj/structure/flora/adobe/rock
+	name = "rock"
+	desc = "Some dusty rocks."
+	icon_state = "drought"
+	icon_variants = 32

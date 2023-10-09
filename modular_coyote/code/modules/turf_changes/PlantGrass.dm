@@ -59,5 +59,9 @@
 /turf/open/indestructible/ground/outside/desert
 	spawnPlants = TRUE
 
+// lets do shit by hand for this
+/turf/open/indestructible/ground/outside/desert/adobe
+	spawnPlants = FALSE
+
 /turf/open/floor/plating/f13/outside/desert
 	spawnPlants = TRUE

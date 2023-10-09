@@ -21,12 +21,12 @@
 	broken_states = list("wood_common_damaged_1", "wood_common_damaged_2", "wood_common_damaged_3", "wood_common_damaged_4", "wood_common_damaged_5", "wood_common_damaged_6")
 
 /turf/open/floor/f13/wood/New()
-	..()
+	. = ..()
 	if(prob(5))
 		broken = 1
 		icon_state = pick(broken_states)
 	else if(icon_variants)
-		icon_state = "[icon_state][rand(1,icon_variants)]"
+		icon_state = "[initial(icon_state)]_[rand(1,icon_variants)]"
 
 /turf/open/floor/f13/wood/make_plating()
 	return ChangeTurf(/turf/open/floor/plating/wooden)
