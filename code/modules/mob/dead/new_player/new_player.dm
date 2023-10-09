@@ -252,6 +252,8 @@
 			alert(src, "This character name is already in use. Choose another.")
 			return */
 
+		LateChoices()
+
 	if(href_list["manifest"])
 		ViewManifest()
 
@@ -290,7 +292,7 @@
 			SSticker.queue_delay = 4
 			qdel(src)
 
-	else if(!href_list["late_join"])
+	else if(!href_list["late_join"] && client)
 		new_player_panel()
 
 	if(href_list["showpoll"])

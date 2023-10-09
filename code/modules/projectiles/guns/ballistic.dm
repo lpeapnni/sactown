@@ -122,10 +122,17 @@ GLOBAL_LIST_EMPTY(gun_accepted_magazines)
 	if(istype(A, /obj/item/ammo_box))
 		var/obj/item/ammo_box/new_mag = A
 		if(magazine?.fixed_mag) // fixed mag, just load bullets in
-			magazine.load_from_box(A, user, FALSE)
-			chamber_round(0)
-			update_icon()
-			return TRUE
+			// do a delay
+			user.DelayNextAction(CLICK_CD_MELEE)
+			user.visible_message("[user] starts to load \the [src].", span_notice("You start to load \the [src]..."))
+
+			if(do_after(user, 30, target = src, allow_movement = TRUE))
+				magazine.load_from_box(A, user, FALSE)
+				chamber_round(0)
+				update_icon()
+				return TRUE
+			else
+				return FALSE
 		// removable mag, eject the mag
 		if(!is_magazine_allowed(new_mag, user)) // But only if the new mag would fit
 			return FALSE
