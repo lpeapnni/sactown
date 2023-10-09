@@ -55,7 +55,7 @@
 
 /turf/open/floor/f13/wood/mosaic
 	icon_state = "wood_mosaic"
-	broken_states = list("wood_mosiac_damaged_1", "wood_mosiac_damaged_2", "wood_mosiac_damaged_3", "wood_mosiac_damaged_4", "wood_mosiac_damaged_5", "wood_mosiac_damaged_6")
+	broken_states = list("wood_mosaic_damaged_1", "wood_mosaic_damaged_2", "wood_mosaic_damaged_3", "wood_mosaic_damaged_4", "wood_mosaic_damaged_5", "wood_mosaic_damaged_6")
 
 /turf/open/floor/f13/wood/dark
 	icon_state = "wood_darker"
