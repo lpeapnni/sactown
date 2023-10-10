@@ -382,19 +382,3 @@ turf/closed/indestructible/f13/splashscreen/proc/ticker()
 	animate(src.fullDark,alpha=0,time=10,easing=CUBIC_EASING)
 	return
 */
-
-// mojave sun/tgmc walls
-
-/turf/closed/wall/f13/adobe
-	name = "adobe wall"
-	desc = "A wall built of solid sandstone."
-	icon = 'icons/fallout/turfs/walls/adobe.dmi'
-	icon_state = "adobe"
-	icon_type_smooth = "adobe"
-	hardness = 80
-	smooth = SMOOTH_TRUE
-	//	disasemblable = 0
-	baseturfs = /turf/open/indestructible/ground/outside/ruins
-	girder_type = 0
-	sheet_type = null
-	canSmoothWith = list(/turf/closed/wall/f13/adobe, /turf/closed/wall,)
