@@ -192,10 +192,16 @@
 		return
 	. = 0
 	for(var/obj/item/ammo_casing/AC in other_ammobox.stored_ammo)
-		if(LAZYLEN(stored_ammo) == max_ammo) //We do this so we don't do a useless do_after if it's already full :] Also it doesn't work :]
+		// we have to count this shit manually thanks to the existence of revolvers :[
+		var/real_bullet_count = 0
+		for(var/index in 1 to LAZYLEN(stored_ammo))
+			if(istype(stored_ammo[index], /obj/item/ammo_casing))
+				real_bullet_count++
+		if(real_bullet_count >= max_ammo) // then we do this so we don't do a useless do_after if it's already full :]
 			break
+
 		user.DelayNextAction(CLICK_CD_MELEE)
-		if(do_after(user, 6, target = src, allow_movement = TRUE))
+		if(do_after(user, CLICK_CD_MELEE, target = src, allow_movement = TRUE))
 			var/did_load = give_round(AC, replace_spent_rounds)
 			if(did_load)
 				other_ammobox.stored_ammo -= AC
