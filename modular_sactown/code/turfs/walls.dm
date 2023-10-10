@@ -1,3 +1,12 @@
+// walls with multiple icon files
+
+/turf/closed/wall/f13/sactown/variable
+	var/list/icon_files
+
+/turf/closed/wall/f13/sactown/variable/New()
+	..()
+	icon = pick(icon_files)
+
 // mojave sun/tgmc walls
 
 /turf/closed/wall/f13/sactown/adobe
@@ -11,9 +20,9 @@
 	baseturfs = /turf/open/indestructible/ground/outside/ruins
 	girder_type = 0
 	sheet_type = null
-	canSmoothWith = list(/turf/closed/wall/f13/adobe, /turf/closed/wall,)
+	canSmoothWith = list(/turf/closed/wall/f13/sactown/adobe, /turf/closed/wall,)
 
-/turf/closed/wall/f13/sactown/siding
+/turf/closed/wall/f13/sactown/variable/siding
 	name = "house wall"
 	desc = "A weathered pre-War house wall."
 	icon = 'modular_sactown/icons/turfs/walls/siding.dmi'
@@ -24,12 +33,10 @@
 	baseturfs = /turf/open/floor/plating/wooden
 	girder_type = 0
 	sheet_type = null
-	canSmoothWith = list(/turf/closed/wall/f13/siding, /turf/closed/wall,)
-    var/list/icon_files = list( 'modular_sactown/icons/turfs/walls/siding.dmi',
-                                'modular_sactown/icons/turfs/walls/siding_1.dmi',
-                                'modular_sactown/icons/turfs/walls/siding_2.dmi',
-                                'modular_sactown/icons/turfs/walls/siding_3.dmi' )
-
-/turf/closed/wall/f13/sactown/siding/New()
-	..()
-	icon = "[pick(icon_files)]"
+	canSmoothWith = list(/turf/closed/wall/f13/sactown/variable/siding, /turf/closed/wall,)
+	icon_files = list(
+		'modular_sactown/icons/turfs/walls/siding.dmi',
+		'modular_sactown/icons/turfs/walls/siding_1.dmi',
+		'modular_sactown/icons/turfs/walls/siding_2.dmi',
+		'modular_sactown/icons/turfs/walls/siding_3.dmi'
+	)
