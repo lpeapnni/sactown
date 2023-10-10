@@ -192,18 +192,25 @@
 		return
 	. = 0
 	for(var/obj/item/ammo_casing/AC in other_ammobox.stored_ammo)
-		var/did_load = give_round(AC, replace_spent_rounds)
-		if(did_load)
-			other_ammobox.stored_ammo -= AC
-			. ++
-		if(!did_load || !multiload)
+		if(LAZYLEN(stored_ammo) == max_ammo) //We do this so we don't do a useless do_after if it's already full :] Also it doesn't work :]
+			break
+		user.DelayNextAction(CLICK_CD_MELEE)
+		if(do_after(user, 6, target = src, allow_movement = TRUE))
+			var/did_load = give_round(AC, replace_spent_rounds)
+			if(did_load)
+				other_ammobox.stored_ammo -= AC
+				. ++
+				other_ammobox.update_icon()
+				update_icon()
+				if(!silent)
+					playsound(src, 'sound/weapons/bulletinsert.ogg', 60, 1)
+			if(!did_load || !multiload)
+				break
+		else
 			break
 	if(.)
 		if(!silent)
 			to_chat(user, span_notice("You load [.] shell\s into \the [src]!"))
-			playsound(src, 'sound/weapons/bulletinsert.ogg', 60, 1)
-		other_ammobox.update_icon()
-		update_icon()
 
 /obj/item/ammo_box/proc/load_from_casing(obj/item/ammo_casing/other_casing, mob/user, silent)
 	if(!istype(other_casing, /obj/item/ammo_casing))
