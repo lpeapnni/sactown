@@ -49,8 +49,8 @@
 
 
 /obj/item/stack/f13Cash //DO NOT USE THIS
-	name = "copper coin"
-	singular_name = "copper coin"
+	name = "bottle cap"
+	singular_name = "cap"
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "bottle_cap"
 	amount = 1
@@ -61,7 +61,8 @@
 	w_class = WEIGHT_CLASS_TINY
 	full_w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
-	var/flavor_desc =	"A copper coin, commonly used for trade."
+	var/flavor_desc =	"A standard Nuka-Cola bottle cap featuring 21 crimps and ridges,\
+					A common unit of exchange, backed by water in the Hub."
 	var/value = CASH_CAP
 	var/flippable = TRUE
 	var/cooldown = 0
@@ -261,106 +262,10 @@
 	min_qty = TICKET_MIN / CASH_CAP
 	max_qty = TICKET_MAX / CASH_CAP
 
-/obj/item/stack/f13Cash/denarius
-	name = "silver coin"
-	latin = 0
-	singular_name = "Sliver Coin" // -us or -i
-	icon = 'icons/obj/economy.dmi'
-	icon_state = "denarius"
-	flavor_desc =	"A sliver, shiny coin, used mainly by the middle class. Worth the same as 10 copper coins."
-	merge_type = /obj/item/stack/f13Cash/denarius
-	pitch = 0
-
-/obj/item/stack/f13Cash/denarius/five
-	amount = 5
-	merge_type = /obj/item/stack/f13Cash/denarius
-
-/obj/item/stack/f13Cash/denarius/ten
-	amount = 10
-	merge_type = /obj/item/stack/f13Cash/denarius
-
-/obj/item/stack/f13Cash/denarius/twenty
-	amount = 20
-	merge_type = /obj/item/stack/f13Cash/denarius
-
-/obj/item/stack/f13Cash/denarius/hundo
-	amount = 100
-	merge_type = /obj/item/stack/f13Cash/denarius
-
-
-/obj/item/stack/f13Cash/random/denarius
-	money_type = /obj/item/stack/f13Cash/denarius
-
-/obj/item/stack/f13Cash/random/denarius/low
-	min_qty = LOW_MIN / CASH_DEN
-	max_qty = LOW_MAX / CASH_DEN
-
-/obj/item/stack/f13Cash/random/denarius/med
-	min_qty = MED_MIN / CASH_DEN
-	max_qty = MED_MAX / CASH_DEN
-
-/obj/item/stack/f13Cash/random/denarius/high
-	min_qty = HIGH_MIN / CASH_DEN
-	max_qty = HIGH_MAX / CASH_DEN
-
-/obj/item/stack/f13Cash/random/denarius/legionpay_basic
-	min_qty = LOW_MIN / CASH_DEN
-	max_qty = LOW_MAX / CASH_DEN
-
-/obj/item/stack/f13Cash/random/denarius/legionpay_veteran
-	min_qty = MED_MIN / CASH_DEN
-	max_qty = MED_MAX / CASH_DEN
-
-/obj/item/stack/f13Cash/random/denarius/legionpay_officer
-	min_qty = HIGH_MIN / CASH_DEN
-	max_qty = HIGH_MAX / CASH_DEN
-
-/obj/item/stack/f13Cash/aureus
-	name = "gold coin"
-	latin = 0
-	singular_name = "Gold Coin"// -us or -i
-	icon = 'icons/obj/economy.dmi'
-	icon_state = "aureus"
-	flavor_desc = 	"A golden coin used by aristocrats and upper class-men. Quite rare... a sight to behold, indeed. Also super shiny! Worth 100 copper coins, or 10 silver coins."
-	value = CASH_AUR * CASH_CAP
-	merge_type = /obj/item/stack/f13Cash/aureus
-	pitch = -100
-
-/obj/item/stack/f13Cash/aureus/five
-	amount = 5
-	merge_type = /obj/item/stack/f13Cash/aureus
-
-/obj/item/stack/f13Cash/aureus/ten
-	amount = 10
-	merge_type = /obj/item/stack/f13Cash/aureus
-
-/obj/item/stack/f13Cash/aureus/twenty
-	amount = 20
-	merge_type = /obj/item/stack/f13Cash/aureus
-
-/obj/item/stack/f13Cash/aureus/hundo
-	amount = 100
-	merge_type = /obj/item/stack/f13Cash/aureus
-
-/obj/item/stack/f13Cash/random/aureus
-	money_type = /obj/item/stack/f13Cash/aureus
-
-/obj/item/stack/f13Cash/random/aureus/low
-	min_qty = 0
-	max_qty = 0
-
-/obj/item/stack/f13Cash/random/aureus/med
-	min_qty = 0
-	max_qty = 0
-
-/obj/item/stack/f13Cash/random/aureus/high
-	min_qty = 0
-	max_qty = 0 //uses flat values because aurei are worth so much
-
 /obj/item/stack/f13Cash/ncr
-	name = "Trade Union scrip"
-	singular_name = "Trade Union scrip"  /* same for denarius, we can pretend the legion can't latin properly */
-	flavor_desc = "Scrip issued by the Texarkana Trade Union that can be exchanged for goods and services. Or copper."
+	name = "NCR Dollar"
+	singular_name = "NCR Dollar"  /* same for denarius, we can pretend the legion can't latin properly */
+	flavor_desc = "Paper money used by the NCR."
 	max_amount = 15000
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "ncr" /* 10 points to whoever writes flavour text for each bill */

@@ -31859,7 +31859,6 @@
 /obj/structure/bed/mattress{
 	icon_state = "mattress3"
 	},
-/obj/item/stack/f13Cash/aureus,
 /turf/open/indestructible/ground/inside/mountain,
 /area/f13/caves)
 "mZW" = (
@@ -40047,7 +40046,6 @@
 /turf/open/floor/plasteel/f13/vault_floor/misc/vaultrust,
 /area/f13/building)
 "qHR" = (
-/obj/item/stack/f13Cash/random/aureus/high,
 /turf/open/indestructible/ground/inside/mountain,
 /area/f13/caves)
 "qHS" = (
@@ -41458,7 +41456,6 @@
 "rnQ" = (
 /obj/structure/closet/locker,
 /obj/effect/spawner/lootdrop/f13/weapon/gun/ammo/tier2,
-/obj/item/stack/f13Cash/aureus,
 /turf/open/floor/f13/wood,
 /area/f13/building)
 "rob" = (
@@ -47438,7 +47435,6 @@
 /obj/structure/bed/mattress{
 	icon_state = "mattress4"
 	},
-/obj/item/stack/f13Cash/random/denarius/med,
 /turf/open/indestructible/ground/outside/dirt,
 /area/f13/building)
 "tWf" = (
