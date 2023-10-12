@@ -1247,3 +1247,29 @@ Edit: TK~  This is the dumbest fucking shit I've ever seen in my life.  This isn
 		The spirits may be merciful, better hope they are in a good mood!")
 	lose_text = span_notice("You are no longer opted out of Second Wind! If you die, you will be able to revive yourself!")
 	locked =  FALSE
+
+/datum/quirk/shaky_fingers
+	name = "Shaky Fingers"
+	desc = "Take your time while reloading."
+	value = -8
+	category = "Ranged Quirks"
+	mechanics = "Why did they have to make these so hard to reload? You take 50% longer when reloading guns with internal magazines \
+		(like revolvers, bolt-action rifles, and shotguns) without the use of speedloaders or stripper clips."
+	conflicts = list(
+		/datum/quirk/speedshooter,
+		/datum/quirk/butter_fingers
+	)
+	mob_trait = TRAIT_SHAKY_FINGERS
+
+/datum/quirk/butter_fingers
+	name = "Butter Fingers"
+	desc = "There goes another round."
+	value = -12
+	category = "Ranged Quirks"
+	mechanics = "Manual dexterity is not on your resume. You take twice as long when reloading guns with internal magazines \
+		(like revolvers, bolt-action rifles, and shotguns) without the use of speedloaders or stripper clips, and sometimes you might even accidentally drop a round!."
+	conflicts = list(
+		/datum/quirk/speedshooter,
+		/datum/quirk/shaky_fingers
+	)
+	mob_trait = TRAIT_BUTTER_FINGERS

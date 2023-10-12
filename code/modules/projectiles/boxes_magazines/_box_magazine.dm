@@ -35,6 +35,7 @@
 	var/list/base_cost// override this one as well if you override bullet_cost
 	var/start_ammo_count
 	var/randomize_ammo_count = TRUE //am evil~
+	var/speedloader = FALSE //Speedloaders skip the delay when loading into fixed mags
 
 /obj/item/ammo_box/Initialize(mapload, ...)
 	. = ..()
@@ -190,20 +191,60 @@
 		return
 	if(!can_load(user))
 		return
+
+	var/speedload = FALSE
+
+	if(fixed_mag && other_ammobox.speedloader) //Skip delay
+		speedload = TRUE
+	
+	var/delay_mult = 1
+	var/oopsie_capable = FALSE
+
+	if(fixed_mag) //We need this here because otherwise these will also affect loading magazines and boxes
+		if(HAS_TRAIT(user, TRAIT_SPEEDSHOOTER))
+			delay_mult = 0.5
+		else if(HAS_TRAIT(user, TRAIT_SHAKY_FINGERS))
+			delay_mult = 1.5
+		else if(HAS_TRAIT(user, TRAIT_BUTTER_FINGERS))
+			delay_mult = 2
+			oopsie_capable = TRUE
+
 	. = 0
 	for(var/obj/item/ammo_casing/AC in other_ammobox.stored_ammo)
+		if(speedload == FALSE)
+			// we have to count this shit manually thanks to the existence of revolvers :[
+			var/real_bullet_count = 0
+			for(var/index in 1 to LAZYLEN(stored_ammo))
+				var/obj/item/ammo_casing/bullet = stored_ammo[index]
+				if(bullet && !isnull(bullet) && bullet?.BB)
+					real_bullet_count++
+			if(real_bullet_count >= max_ammo) // then we do this so we don't do a useless do_after if it's already full :]
+				break
+
+			user.DelayNextAction(CLICK_CD_MELEE * delay_mult)
+			if(do_after(user, CLICK_CD_MELEE * delay_mult, target = src, allow_movement = TRUE))
+				if(oopsie_capable)
+					if(prob(20))
+						user.visible_message(span_alert("[user] messes up and \the [AC] slips through [user.p_their()] fingers!"),span_alert("You mess up and \the [AC] slips through your fingers!"))
+						AC.forceMove(drop_location())
+						AC.bounce_away(TRUE, toss_direction = angle2dir_cardinal(rand(0,360)))
+						continue
+			else
+				break
+		
 		var/did_load = give_round(AC, replace_spent_rounds)
 		if(did_load)
 			other_ammobox.stored_ammo -= AC
 			. ++
+			other_ammobox.update_icon()
+			update_icon()
+			if(!silent)
+				playsound(src, 'sound/weapons/bulletinsert.ogg', 60, 1)
 		if(!did_load || !multiload)
 			break
 	if(.)
 		if(!silent)
 			to_chat(user, span_notice("You load [.] shell\s into \the [src]!"))
-			playsound(src, 'sound/weapons/bulletinsert.ogg', 60, 1)
-		other_ammobox.update_icon()
-		update_icon()
 
 /obj/item/ammo_box/proc/load_from_casing(obj/item/ammo_casing/other_casing, mob/user, silent)
 	if(!istype(other_casing, /obj/item/ammo_casing))

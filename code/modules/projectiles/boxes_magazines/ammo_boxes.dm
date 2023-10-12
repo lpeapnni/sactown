@@ -701,6 +701,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	multiple_sprites = 1
 	randomize_ammo_count = TRUE
+	speedloader = TRUE
 /*
 //.38
 /obj/item/ammo_box/c38
@@ -729,6 +730,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	custom_materials = list(/datum/material/iron = MATS_PISTOL_SPEEDLOADER)
 	randomize_ammo_count = TRUE
+	speedloader = TRUE
 
 /obj/item/ammo_box/c22/empty
 	start_empty = 1
@@ -745,6 +747,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	custom_materials = list(/datum/material/iron = 2000)
 	randomize_ammo_count = TRUE
+	speedloader = TRUE
 
 /obj/item/ammo_box/l10mm/empty
 	start_empty = 1
@@ -762,6 +765,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	custom_materials = list(/datum/material/iron = MATS_PISTOL_SPEEDLOADER)
 	randomize_ammo_count = TRUE
+	speedloader = TRUE
 
 /obj/item/ammo_box/a357/empty
 	start_empty = 1
@@ -807,6 +811,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	custom_materials = list(/datum/material/iron = MATS_PISTOL_SPEEDLOADER)
 	randomize_ammo_count = TRUE
+	speedloader = TRUE
 
 /obj/item/ammo_box/m44/empty
 	start_empty = 1
@@ -836,6 +841,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	custom_materials = list(/datum/material/iron = MATS_PISTOL_SPEEDLOADER)
 	randomize_ammo_count = TRUE
+	speedloader = TRUE
 
 /obj/item/ammo_box/c45rev/empty
 	start_empty = 1
@@ -851,6 +857,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	custom_materials = list(/datum/material/iron = MATS_PISTOL_SPEEDLOADER)
 	randomize_ammo_count = TRUE
+	speedloader = TRUE
 
 /obj/item/ammo_box/a45lcrev/empty
 	start_empty = 1
@@ -868,6 +875,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	custom_materials = list(/datum/material/iron = MATS_PISTOL_SPEEDLOADER)
 	randomize_ammo_count = TRUE
+	speedloader = TRUE
 
 /obj/item/ammo_box/rev308/empty
 	start_empty = 1
@@ -884,6 +892,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	custom_materials = list(/datum/material/iron = MATS_PISTOL_SPEEDLOADER)
 	randomize_ammo_count = TRUE
+	speedloader = TRUE
 
 /obj/item/ammo_box/c4570/ratshot
 	name = "speed loader (.45-70 forager)"
@@ -971,6 +980,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	custom_materials = list(/datum/material/iron = MATS_STRIPPER)
 	randomize_ammo_count = TRUE
+	speedloader = TRUE
 
 /obj/item/ammo_box/a308
 	name = "stripper clip (.308)"
@@ -983,6 +993,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	custom_materials = list(/datum/material/iron = MATS_STRIPPER)
 	randomize_ammo_count = TRUE
+	speedloader = TRUE
 
 /obj/item/ammo_box/a308/empty
 	start_empty = 1
@@ -997,6 +1008,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/iron = MATS_STRIPPER)
 	randomize_ammo_count = TRUE
+	speedloader = TRUE
 
 /obj/item/ammo_box/a308/doublestacked/empty
 	start_empty = 1
@@ -1013,6 +1025,7 @@
 	custom_materials = list(/datum/material/iron = MATS_STRIPPER)
 	w_class = WEIGHT_CLASS_TINY
 	randomize_ammo_count = TRUE
+	speedloader = TRUE
 
 
 //Needler
@@ -1027,6 +1040,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	custom_materials = list(/datum/material/iron = MATS_STRIPPER)
 	randomize_ammo_count = TRUE
+	speedloader = TRUE
 
 //gauss
 /obj/item/ammo_box/gauss

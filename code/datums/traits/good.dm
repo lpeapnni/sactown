@@ -1969,6 +1969,21 @@ GLOBAL_LIST_INIT(weapons_of_texarkana, list(
 	category = "Tailer Quirks"
 	mob_trait = TRAIT_TAILTHAGO
 
+/datum/quirk/speedshooter
+	name = "Speed Shooter"
+	desc = "Keep the bullets coming!"
+	value = 14
+	category = "Ranged Quirks"
+	mechanics = "You are twice as fast when reloading guns with internal magazines (like revolvers, bolt-action rifles, and shotguns) without the use of speedloaders or stripper clips."
+	conflicts = list(
+		/datum/quirk/shaky_fingers,
+		/datum/quirk/butter_fingers,
+	)
+	mob_trait = TRAIT_SPEEDSHOOTER
+	gain_text = span_notice("It's high noon.")
+	lose_text = span_danger("It's quarter past twelve.")
+	locked =  FALSE
+
 
 ///QUIRK PACKAGES/// QUACKAGES IF YOU WILL
 //Read it all, you're a big peoples, I believe in you.
