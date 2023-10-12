@@ -270,13 +270,27 @@ GLOBAL_LIST_INIT(desolate_plant_spawn_list, list(
 	icon_state = "wasteland"
 	icon = 'icons/fallout/turfs/ground_harsh.dmi'
 
+// mojave sun/tgmc desert turf
+/turf/open/indestructible/ground/outside/desert/adobe
+	icon = 'icons/fallout/turfs/desert.dmi'
+	icon_state = "desert"
+
+/turf/open/indestructible/ground/outside/desert/adobe/alt
+	icon = 'icons/fallout/turfs/desert.dmi'
+	icon_state = "desert_alt"
+
 /turf/open/indestructible/ground/outside/desert/Initialize()
 	. = ..()
 	if(prob(2))
 		var/obj/derp = pickweight(loots)
 		salvage = new derp()
-	if(icon_state != "wasteland")
-		icon_state = "wasteland[rand(1,31)]"
+	switch(icon_state)
+		if("wasteland")
+			icon_state = "wasteland[rand(1,31)]"
+		if("desert")
+			icon_state = "desert_[rand(1,3)]"
+		if("desert_alt")
+			icon_state = "desert_alt_[rand(1,3)]"
 	for(var/direction in GLOB.cardinals)
 		var/turf/turf_to_check = get_step(src, direction)
 		if(istype(turf_to_check, /turf/open/water))
@@ -508,18 +522,17 @@ GLOBAL_LIST_INIT(desolate_plant_spawn_list, list(
 
 /turf/open/indestructible/ground/inside/mountain
 	name = "cave"
-	icon_state = "rockfloor1"
-	icon = 'icons/fallout/turfs/mining.dmi'
+	icon_state = "cave_1"
+	icon = 'icons/fallout/turfs/cave.dmi'
 //	allowed_plants = list(/obj/item/seeds/glow)
 //	step_sounds = list("human" = "erikafootsteps")
 
 /turf/open/indestructible/ground/inside/mountain/Initialize()
 	. = ..()
 	//If no fences, machines, etc. try to plant mushrooms
-	if(!(\
-			(locate(/obj/structure) in src) || \
-			(locate(/obj/machinery) in src) ))
+	if(!((locate(/obj/structure) in src) || (locate(/obj/machinery) in src)))
 		plantShrooms()
+	/*
 	for(var/direction in GLOB.cardinals)
 		var/turf/turf_to_check = get_step(src, direction)
 		if(istype(turf_to_check, /turf/open/water))
@@ -534,6 +547,7 @@ GLOBAL_LIST_INIT(desolate_plant_spawn_list, list(
 				if(WEST)
 					DS.pixel_x = -32
 			DS.dir = turn(direction, 180)
+	*/
 
 /obj/effect/overlay/rockfloor_side
 	name = "cave"
@@ -554,7 +568,12 @@ GLOBAL_LIST_INIT(desolate_plant_spawn_list, list(
 
 /turf/open/indestructible/ground/inside/mountain/New()
 	..()
-	icon_state = "rockfloor[rand(1,2)]"
+	icon_state = "cave_[rand(1,7)]"
+
+/turf/open/indestructible/ground/inside/mountain/drought
+	name = "cave"
+	icon_state = "cave_1"
+	icon = 'icons/fallout/turfs/cave_drought.dmi'
 
 /turf/open/indestructible/ground/inside/dirt
 	name = "dirt"
