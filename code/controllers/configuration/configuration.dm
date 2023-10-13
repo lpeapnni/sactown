@@ -368,7 +368,7 @@ Example config:
 			else
 				log_config("Unknown command in map vote config: '[command]'")
 
-#define UNIT_TEST_MAP "pahrump-unit-test"
+#define UNIT_TEST_MAP "sac-town-unit-test"
 
 /datum/controller/configuration/proc/LoadUnitTest()
 	var/datum/map_config/currentmap = null
