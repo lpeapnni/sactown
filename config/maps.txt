@@ -13,34 +13,38 @@ Format:
 	disabled (disables the map)
 endmap
 
+map sac-town
+    default
+endmap
+
 map pahrump-everything
-	default
+    disabled
 endmap
 
 map pahrump-only
-    adminonly
+    disabled
 endmap
 
 map pahrump-garland
-    adminonly
+    disabled
 endmap
 
 map pahrump-redriver
-    adminonly
+    disabled
 endmap
 
 map pahrump-redriver-garland
-    adminonly
+    disabled
 endmap
 
 map pahrump-rocksprings
-    adminonly
+    disabled
 endmap
 
 map pahrump-rocksprings-garland
-    adminonly
+    disabled
 endmap
 
 map pahrump-rocksprings-redriver
-    adminonly
+    disabled
 endmap
