@@ -1,8 +1,8 @@
 {
-	"map_name": "Unit Test",
-	"map_path": "map_files/Pahrump-Sunset",
+	"map_name": "Sac-Town, New California",
+	"map_path": "map_files/Sac-Town",
 	"map_file": [
-		"Pahrump-Sunset.dmm"
+		"Sac-Town.dmm"
 	],
 	"station_ruin_budget":0,
 	"space_ruin_levels":0,
@@ -21,9 +21,7 @@
 			"Down": -1,
 			"No Parallax": true,
 			"Linkage" : "Cross",
-			"Name": "Yuma",
-			"Force X": 2,
-			"Force Y": 2,
+			"Name": "Sac-Town",
 			"Force Z": 1
 		}
 	],
